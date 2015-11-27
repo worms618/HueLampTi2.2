@@ -1,4 +1,5 @@
-﻿using HueLampApp.MainpageObjects;
+﻿using HueLampApp.HueLampObject;
+using HueLampApp.MainpageObjects;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,12 +32,24 @@ namespace HueLampApp
         public MainPage()
         {
             this.InitializeComponent();
-            var task = LightOn();
+            //HueLamp hl1 = new HueLamp(1) { On = true, Brightness = 0};
+            //HueLamp hl2 = new HueLamp(2) { On = false, Brightness = 200 };            
+            //var task = webInfo.PutLampProps(hl1);
+            //task = webInfo.PutLampProps(hl2);
+            var response = AllLamps();
         }
 
-        private void AllLamps()
+        private async Task AllLamps()
         {
-            
+            var task = await webInfo.RetrieveLights();
+            if (string.IsNullOrEmpty(task))
+            {
+                consoleView.Text = "geen tekst";
+            }
+            else
+            {
+                consoleView.Text = task;
+            }
         }
 
         private async Task LightOn()

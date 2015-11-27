@@ -62,6 +62,10 @@ namespace HueLampApp.HueLampObject
         public HueLamp(int id)
         {
             ID = id;
+            On = true;
+            Brightness = 255;
+            Hue = 44444;
+            Sat = 254;
         }
     }
 }
