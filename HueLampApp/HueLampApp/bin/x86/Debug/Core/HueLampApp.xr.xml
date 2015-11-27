@@ -9,9 +9,14 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
       <RootProperty Name="Background" />
+      <RootProperty Name="Children" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
     <RootType FullName="HueLampApp.HueLampObject.HueLampDetailpage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="Name" />
+      <RootProperty Name="TextWrapping" />
+    </RootType>
     <RootType FullName="HueLampApp.MainPage" />
   </Roots.RootTypes>
 </Roots>

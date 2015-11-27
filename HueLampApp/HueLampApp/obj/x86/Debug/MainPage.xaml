@@ -9,6 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+        <TextBlock x:ConnectionId='1' Name="consoleView" TextWrapping="Wrap"/>
     </Grid>
 </Page>
 

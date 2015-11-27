@@ -9,5 +9,6 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+        <TextBlock Name="consoleView" TextWrapping="Wrap"/>
     </Grid>
 </Page>
