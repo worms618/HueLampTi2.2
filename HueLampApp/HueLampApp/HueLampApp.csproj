@@ -107,6 +107,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainpageObjects\UriRouter.cs" />
+    <Compile Include="Pasers\HueLampParsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

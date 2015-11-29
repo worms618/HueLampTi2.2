@@ -28,15 +28,16 @@ namespace HueLampApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private UriRouter webInfo = new UriRouter("3939a4a8fe6b19404939e53f9b29426");
+        private UriRouter webInfo;
         public MainPage()
         {
             this.InitializeComponent();
+            webInfo = new UriRouter();
             //HueLamp hl1 = new HueLamp(1) { On = true, Brightness = 0};
             //HueLamp hl2 = new HueLamp(2) { On = false, Brightness = 200 };            
             //var task = webInfo.PutLampProps(hl1);
             //task = webInfo.PutLampProps(hl2);
-            var response = AllLamps();
+            //var response = AllLamps();
         }
 
         private async Task AllLamps()

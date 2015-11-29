@@ -1,4 +1,5 @@
 ﻿using HueLampApp.HueLampObject;
+using HueLampApp.Pasers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,54 @@ namespace HueLampApp.MainpageObjects
             Username = username;
             Port = port;
             client = new HttpClient();
-            
+            var response = GetUsername();           
+        }
+
+        public async Task GetUsername()
+        {
+            var response = await getUsername();
+            if (string.IsNullOrEmpty(response))
+            {
+                throw new ArgumentNullException("Username is niet aangekomen");
+            }
+            else
+            {
+                Username = HueLampParsers.GetUsernameFromJson(response);
+            }
+            System.Diagnostics.Debug.WriteLine("Username: "+Username);
+        }
+
+        private async Task<string> getUsername()
+        {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(5000);
+
+            try
+            {
+                HttpStringContent content = new HttpStringContent
+               (
+                   $"{{\"devicetype\":\"MijnApp#Remco\"}}",
+                   Windows.Storage.Streams.UnicodeEncoding.Utf8,
+                   "application/json"
+               );
+                Uri askUsername = new Uri($"http://{IP}:{Port}/api");
+
+                var response = await client.PostAsync(askUsername, content).AsTask(cts.Token);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return string.Empty;
+                }
+
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch(Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+           
+
+            return $"{{\"devicetype\":\"MijnApp#Remco\"}}";
         }
 
         public async Task<bool> PutLampProps(HueLamp lamp)
