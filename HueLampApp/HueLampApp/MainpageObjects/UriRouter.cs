@@ -1,5 +1,6 @@
 ﻿using HueLampApp.HueLampObject;
 using HueLampApp.Pasers;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,24 +28,24 @@ namespace HueLampApp.MainpageObjects
             Username = username;
             Port = port;
             client = new HttpClient();
-            var response = GetUsername();           
+            var response = PostUsername();           
         }
 
-        public async Task GetUsername()
+        public async Task PostUsername()
         {
-            var response = await getUsername();
+            var response = await postUsername();
             if (string.IsNullOrEmpty(response))
             {
                 throw new ArgumentNullException("Username is niet aangekomen");
             }
             else
             {
-                Username = HueLampParsers.GetUsernameFromJson(response);
-            }
-            System.Diagnostics.Debug.WriteLine("Username: "+Username);
+                Username = HueLampParser.GetUsernameFromJson(response);
+                JObject jo = JObject.Parse(response);
+            }            
         }
 
-        private async Task<string> getUsername()
+        private async Task<string> postUsername()
         {
             var cts = new CancellationTokenSource();
             cts.CancelAfter(5000);
@@ -74,7 +75,31 @@ namespace HueLampApp.MainpageObjects
             }
            
 
-            return $"{{\"devicetype\":\"MijnApp#Remco\"}}";
+            return string.Empty;
+        }
+        
+        public async Task<string> GetAllLamps()
+        {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(5000);
+            try
+            {
+                Uri uriAllLightInfo = new Uri($"http://{IP}:{Port}/api/{Username}/lights/");
+
+                var response = await client.GetAsync(uriAllLightInfo).AsTask(cts.Token);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return string.Empty;
+                }
+
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+                return string.Empty;
+            }
         }
 
         public async Task<bool> PutLampProps(HueLamp lamp)
@@ -103,39 +128,6 @@ namespace HueLampApp.MainpageObjects
                 return false;
             }
             return true;
-        }
-        
-        public async Task<string> RetrieveLights()
-        {
-            return await RetrieveLight(1);
-        }
-
-        public async Task<string> RetrieveLight(int id)
-        {
-            var cts = new CancellationTokenSource();
-            cts.CancelAfter(5000);
-            try
-            {
-                Uri uriAllLightInfo = new Uri($"http://{IP}:{Port}/api/{Username}/lights/{id}/state/");
-
-                var response = await client.GetAsync(uriAllLightInfo).AsTask(cts.Token);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    return string.Empty;
-                }
-
-                string jsonResponse = await response.Content.ReadAsStringAsync();
-
-                System.Diagnostics.Debug.WriteLine(jsonResponse);
-                return jsonResponse;
-
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                return string.Empty;
-            }
-        }
+        }       
     }
 }

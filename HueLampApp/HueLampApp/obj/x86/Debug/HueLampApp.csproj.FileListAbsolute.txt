@@ -439,3 +439,7 @@ C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\HueLamp
 C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\HueLampObject\HueLampDetailpage.g.cs
 C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\HueLampObject\HueLampDetailpage.xaml
 C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\HueLampObject\HueLampDetailpage.xbf
+C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\bin\x86\Debug\Core\Newtonsoft.Json.dll
+C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\bin\x86\Debug\Newtonsoft.Json.dll
+C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\bin\x86\Debug\Newtonsoft.Json.xml
+C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\Core\Newtonsoft.Json.dll

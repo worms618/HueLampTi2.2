@@ -1,5 +1,6 @@
 ﻿using HueLampApp.HueLampObject;
 using HueLampApp.MainpageObjects;
+using HueLampApp.Pasers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,91 +29,23 @@ namespace HueLampApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private UriRouter webInfo;
+        private MainViewModel mvm;
         public MainPage()
         {
             this.InitializeComponent();
-            webInfo = new UriRouter();
-            //HueLamp hl1 = new HueLamp(1) { On = true, Brightness = 0};
-            //HueLamp hl2 = new HueLamp(2) { On = false, Brightness = 200 };            
-            //var task = webInfo.PutLampProps(hl1);
-            //task = webInfo.PutLampProps(hl2);
-            //var response = AllLamps();
+            mvm = new MainViewModel();
+            DataContext = mvm;
         }
 
-        private async Task AllLamps()
+        private void AllLamps_Click(object sender, RoutedEventArgs e)
         {
-            var task = await webInfo.RetrieveLights();
-            if (string.IsNullOrEmpty(task))
-            {
-                consoleView.Text = "geen tekst";
-            }
-            else
-            {
-                consoleView.Text = task;
-            }
+            mvm.GetCurrentLightsData();
+            UploadLamps.IsEnabled = true;          
         }
 
-        private async Task LightOn()
+        private void UploadLamps_Click(object sender, RoutedEventArgs e)
         {
-            var response = await LightOnTask();
-            if (string.IsNullOrEmpty(response))
-            {
-                //consoleView.Text = "niks";
-                await new MessageDialog("Error while setting light properties. ….").ShowAsync();
-            }
-            else
-                consoleView.Text = response;
+            mvm.UploadLights();
         }
-
-        private async Task<string> LightOnTask()
-        {
-            var cts = new CancellationTokenSource();
-            cts.CancelAfter(5000);
-
-            try
-            {
-                HttpClient client = new HttpClient();
-                
-
-                HttpStringContent content
-                    = new HttpStringContent
-                          ($"{{ \"on\": {false.ToString().ToLower()} }}",
-                            Windows.Storage.Streams.UnicodeEncoding.Utf8,
-                            "application/json");
-                
-                //string ip, username;
-                //int port;
-                //MainPage.RetrieveSettings(out ip, out port, out username);
-
-                Uri uriLampState = new Uri($"http://{webInfo.IP}:{webInfo.Port}/api/{webInfo.Username}/lights/{1}/state");
-               
-
-                HttpResponseMessage response = await client.PutAsync(uriLampState, content).AsTask(cts.Token);
-                
-                System.Diagnostics.Debug.WriteLine("er is response");
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    consoleView.Text += "1";
-                    return string.Empty;
-                }
-
-                string jsonResponse = await response.Content.ReadAsStringAsync();      
-
-                System.Diagnostics.Debug.WriteLine("JSonresponse: "+jsonResponse);
-
-                consoleView.Text += "2";
-                return jsonResponse;
-            }
-            catch (Exception ex)
-            {
-                consoleView.Text += " fout!!";
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-
-            }
-            consoleView.Text += "3";
-            return string.Empty;
-        }        
     }
 }

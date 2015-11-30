@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace HueLampApp.HueLampObject
 {
     public class HueLamp
     {
-        public int ID { get; set; }
+        public int ID { get; }
         public bool On { get; set; }
         private int _brightness;
 
@@ -66,6 +67,19 @@ namespace HueLampApp.HueLampObject
             Brightness = 255;
             Hue = 44444;
             Sat = 254;
+        }
+
+        public void UpdateHueLamp(JObject jsonObject)
+        {
+            On = (bool)jsonObject       ["" + ID]["state"]["on"];
+            Brightness = (int)jsonObject["" + ID]["state"]["bri"];
+            Hue = (long)jsonObject      ["" + ID]["state"]["hue"];
+            Sat = (int)jsonObject       ["" + ID]["state"]["sat"];
+        }
+
+        public override string ToString()
+        {
+            return $"ID: {ID} - ON: {On} - Brightness: {Brightness} - Hue: {Hue} - Sat: {Sat}";
         }
     }
 }

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace HueLampApp.Pasers
 {
-    public class HueLampParsers
+    public class HueLampParser
     {
         public static string GetUsernameFromJson(string jsonString)
         {
@@ -27,5 +29,14 @@ namespace HueLampApp.Pasers
             //System.Diagnostics.Debug.WriteLine($"Index: {usernameIndex} - Item: {split[usernameIndex]}");
             return split[usernameIndex];
         }
+
+        public static int GetAmountOfLights(string jsonString)
+        {
+            System.Diagnostics.Debug.WriteLine("All Lights data: "+jsonString);
+            JObject jobject = JObject.Parse(jsonString);
+            System.Diagnostics.Debug.WriteLine("Amount: " + jobject.Count);
+            //bool on = (bool)jobject["1"]["state"]["on"];
+            return jobject.Count;
+        }        
     }
 }
