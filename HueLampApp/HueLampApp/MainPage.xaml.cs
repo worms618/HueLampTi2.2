@@ -35,17 +35,36 @@ namespace HueLampApp
             this.InitializeComponent();
             mvm = new MainViewModel();
             DataContext = mvm;
+            HueLampLijst.ItemsSource = mvm.hueLampen;            
         }
 
         private void AllLamps_Click(object sender, RoutedEventArgs e)
         {
             mvm.GetCurrentLightsData();
-            UploadLamps.IsEnabled = true;          
+            //UploadLamps.IsEnabled = true;          
         }
 
         private void UploadLamps_Click(object sender, RoutedEventArgs e)
         {
-            mvm.UploadLights();
+            mvm.GetCurrentLightsData();
+        }
+        
+        private void HueLampLijst_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            ListView listv = (ListView)sender;
+            HueLamp h = (HueLamp)listv.SelectedItem;
+            //System.Diagnostics.Debug.WriteLine("TAPPED HueLampLijst: ");
+
+            if (h != null)
+            {
+                SelectedLamp.Text = " " + h.ID;
+                AanTextBlock.Text = h.On + "";
+                BrightnessTextBlock.Text = h.Brightness + "";
+                HueTextBlock.Text = h.Hue + "";
+                SatTextBlock.Text = h.Sat + "";
+
+
+            }
         }
     }
 }

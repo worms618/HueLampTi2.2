@@ -3,6 +3,7 @@ using HueLampApp.Pasers;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -12,13 +13,48 @@ using Windows.Web.Http;
 
 namespace HueLampApp.MainpageObjects
 {
-    public class UriRouter
+    public class UriRouter : INotifyPropertyChanged
     {
-        public string IP { get; set; }
-        public string Username { get; set; }
-        public int Port { get; set; }
+        private string _ip;
+
+        public string IP
+        {
+            get { return _ip; }
+            set { _ip = value; OnPropertyChanged(nameof(IP)); }
+        }
+
+        private int _port;
+
+        public int Port
+        {
+            get { return _port; }
+            set { _port = value; OnPropertyChanged(nameof(Port)); }
+        }
+
+        private string _username;
+
+        public string Username
+        {
+            get { return _username; }
+            set { _username = value; OnPropertyChanged(nameof(Username)); }
+        }
+
 
         private HttpClient client;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyname)
+        {
+            var eventhandler = PropertyChanged;
+
+            if (eventhandler != null)
+            {
+                //System.Diagnostics.Debug.WriteLine("event is afgegaan");
+                eventhandler(this, new PropertyChangedEventArgs(propertyname));
+            }
+                
+        }
 
         private UriRouter() { }
 
@@ -28,7 +64,8 @@ namespace HueLampApp.MainpageObjects
             Username = username;
             Port = port;
             client = new HttpClient();
-            var response = PostUsername();           
+            var response = PostUsername();
+            System.Diagnostics.Debug.WriteLine("Username: " + _username);
         }
 
         public async Task PostUsername()
@@ -41,7 +78,7 @@ namespace HueLampApp.MainpageObjects
             else
             {
                 Username = HueLampParser.GetUsernameFromJson(response);
-                JObject jo = JObject.Parse(response);
+                //JObject jo = JObject.Parse(response);
             }            
         }
 

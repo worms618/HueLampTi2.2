@@ -8,20 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace HueLampApp.MainpageObjects
 {
     public class MainViewModel
     {
         public UriRouter LampsConnecter { get; }
-        public List<HueLamp> hueLampen { get; }
+        public ObservableCollection<HueLamp> hueLampen { get; }
 
         private JObject jsonObject = null;                
 
         public MainViewModel()
         {
             LampsConnecter = new UriRouter();
-            hueLampen = new List<HueLamp>();               
+            hueLampen = new ObservableCollection<HueLamp>();               
         }
 
         public async void GetCurrentLightsData()
@@ -33,7 +34,13 @@ namespace HueLampApp.MainpageObjects
             }
             else
             {
-                jsonObject = JObject.Parse(response);
+                try {
+                    jsonObject = JObject.Parse(response);
+                }catch(Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(response);
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                }
                 //System.Diagnostics.Debug.WriteLine("Amount of huelamps by json parser: " + jsonObject.Count);
                 UpdateList();
             }

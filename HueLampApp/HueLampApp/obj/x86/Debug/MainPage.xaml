@@ -7,11 +7,114 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Orientation="Horizontal">
+    <!--<StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Orientation="Horizontal">
+        
+        <RelativePanel>
+            <Button Name="AllLamps" 
+                    Content="Get all lamps" 
+                    Width="auto" Height="auto" 
+                    Click="AllLamps_Click" 
+                    Margin="5"
+                    RelativePanel.LeftOf="UploadLamps"/>
+        
+            <Button Name="UploadLamps" 
+                    Content="upload all lamps" 
+                    Width="auto" Height="auto" 
+                    Click="UploadLamps_Click" 
+                    Margin="5" 
+                    IsEnabled="False"
+                    RelativePanel.AlignRightWithPanel="True"/>
+        </RelativePanel>
 
-        <TextBlock x:ConnectionId='1' Name="consoleView" TextWrapping="Wrap"/>        
-        <Button x:ConnectionId='2' Name="AllLamps" Content="Get all lamps" Width="auto" Height="auto"                        Margin="5,5,5,5"/>
-        <Button x:ConnectionId='3' Name="UploadLamps" Content="upload all lamps" Width="auto" Height="auto"                           Margin="5,5,5,5" IsEnabled="False"/>
-    </StackPanel>
+        <SplitView Name="Info"  DisplayMode="Inline" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <ToggleButton HorizontalAlignment="Right" Click="ToggleButton_Click">
+                <ToggleButton.Content>
+                    <Border Background="Transparent">
+                        <FontIcon x:Name="Hamburger"
+                                          FontFamily="Segoe MDL2 Assets"
+                                          Glyph="&#xE909;"/>
+                    </Border>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <SplitView.Pane>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Ip: "/>
+                    <TextBlock Text="Port: " Grid.Row="1"/>
+                    <TextBlock Text="Username: " Grid.Row="2"/>
+
+                    <TextBox Text="{Binding Path=LampsConnecter.IP, Mode=TwoWay}" Grid.Column="1"/>
+                    <TextBox Text="{Binding Path=LampsConnecter.Port, Mode=TwoWay}" Grid.Row ="1" Grid.Column="1"/>
+                    <TextBox Text="{Binding Path=LampsConnecter.Username, Mode=TwoWay}" Grid.Row ="2" Grid.Column="1"/>
+
+                </Grid>
+            </SplitView.Pane>
+        </SplitView>
+    </StackPanel>-->
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.RowDefinitions>            
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="Gray" BorderBrush="Gray">
+            <ListView x:ConnectionId='9' Name="HueLampLijst" Margin="10" ItemsSource="{Binding Path=hueLampen}" Grid.Row="1"                               FontSize="30" ScrollViewer.VerticalScrollMode="Auto">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Hue Lamp ID: " FontSize="30"/>
+                            <TextBlock Name="IDLamp" Text="{Binding Path=ID, Mode=TwoWay}"  FontSize="30"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+
+        <StackPanel Orientation="Horizontal" Margin="20" Grid.Row="1" Grid.ColumnSpan="2">
+            <TextBlock Text="Geselecteerde Lamp: "  FontSize="30"/>
+            <TextBlock x:ConnectionId='8' Name="SelectedLamp"  FontSize="30"/>
+        </StackPanel>
+
+        <RelativePanel Grid.Row="2" Grid.ColumnSpan="2">
+            <StackPanel x:ConnectionId='2' Name="staticNames" Orientation="Vertical" Margin="10" RelativePanel.AlignLeftWithPanel="True">
+                <TextBlock Text="Aan:" FontSize="30"/>
+                <TextBlock Text="Brightness:" FontSize="30"/>
+                <TextBlock Text="Hue:" FontSize="30"/>
+                <TextBlock Text="Sat:" FontSize="30"/>
+            </StackPanel>
+
+            <StackPanel x:ConnectionId='3' Name="VariableData" Orientation="Vertical" Margin="10" RelativePanel.RightOf="staticNames">
+                <TextBlock x:ConnectionId='4' Name="AanTextBlock" FontSize="30"/>
+                <TextBlock x:ConnectionId='5' Name="BrightnessTextBlock" FontSize="30"/>
+                <TextBlock x:ConnectionId='6' Name="HueTextBlock" FontSize="30"/>
+                <TextBlock x:ConnectionId='7' Name="SatTextBlock" FontSize="30"/>                
+             </StackPanel>            
+        </RelativePanel>        
+        
+        <StackPanel Orientation="Horizontal" Margin="20" Grid.Row="3">
+            <Button x:ConnectionId='1' Content="&#xE895;" FontFamily="Segoe MDL2 Assets"                           Margin="5,0,0,0"/>
+            <Button Content="&#xE909;" FontFamily="Segoe MDL2 Assets" Margin="5,0,5,0"/>                    
+        </StackPanel>
+
+        <Button Content="Update lamp" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </Grid>
 </Page>
 
