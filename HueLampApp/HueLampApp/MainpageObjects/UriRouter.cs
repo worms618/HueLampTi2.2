@@ -63,24 +63,25 @@ namespace HueLampApp.MainpageObjects
             IP = Ip;
             Username = username;
             Port = port;
-            client = new HttpClient();
-            var response = PostUsername();
-            System.Diagnostics.Debug.WriteLine("Username: " + _username);
+            var reponse = PostUsername();
+            client = new HttpClient();            
+            //System.Diagnostics.Debug.WriteLine("Username: " + _username);
         }
 
-        public async Task PostUsername()
+        public async Task<bool> PostUsername()
         {
             var response = await postUsername();
             if (string.IsNullOrEmpty(response))
             {
-                throw new ArgumentNullException("Username is niet aangekomen");
+                return false;
             }
             else
             {
                 Username = HueLampParser.GetUsernameFromJson(response);
+                return true;
                 //JObject jo = JObject.Parse(response);
             }            
-        }
+        }        
 
         private async Task<string> postUsername()
         {
@@ -147,7 +148,7 @@ namespace HueLampApp.MainpageObjects
             {
                 HttpStringContent content = new HttpStringContent
                     (
-                        $"{{\"on\":{lamp.On.ToString().ToLower()}}}",
+                        $"{{\"on\":{lamp.On.ToString().ToLower()},\"bri\":{lamp.Brightness.ToString().ToLower()},\"hue\":{lamp.Hue.ToString().ToLower()},\"sat\":{lamp.Sat.ToString().ToLower()}}}",
                         Windows.Storage.Streams.UnicodeEncoding.Utf8,
                         "application/json"
                     );

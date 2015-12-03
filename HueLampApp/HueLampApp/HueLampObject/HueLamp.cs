@@ -1,36 +1,57 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HueLampApp.HueLampObject
 {
-    public class HueLamp
+    public class HueLamp : INotifyPropertyChanged
     {
         public int ID { get; }
-        public bool On { get; set; }
-        private int _brightness;
 
+        private bool _on;
+        public bool On
+        {
+            get { return _on; }
+            set { _on = value; OnPropertyChanged(nameof(On)); }
+        }
+
+        private int _brightness;
         public int Brightness
         {
             get { return _brightness; }
-            set { _brightness = SetValue(0,255,value); }
+            set { _brightness = SetValue(0,255,value); OnPropertyChanged(nameof(Brightness)); }
         }
 
         private long _hue;
         public long Hue
         {
             get { return _hue; }
-            set {_hue = SetValue(0,65535,value); }
+            set {_hue = SetValue(0,65535,value); OnPropertyChanged(nameof(Hue)); }
         }
 
         private int _sat;
         public int Sat
         {
             get { return _sat; }
-            set { _sat = SetValue(0,255,value); }
+            set { _sat = SetValue(0,255,value); OnPropertyChanged(nameof(Sat)); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyname)
+        {
+            var eventhandler = PropertyChanged;
+
+            if (eventhandler != null)
+            {
+                //System.Diagnostics.Debug.WriteLine($"event is afgegaan: {propertyname}");
+                eventhandler(this, new PropertyChangedEventArgs(propertyname));
+            }
+
         }
 
         private long SetValue(long min, long max, long value)

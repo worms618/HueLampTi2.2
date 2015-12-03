@@ -63,7 +63,7 @@ namespace HueLampApp.MainpageObjects
             {
                 System.Diagnostics.Debug.WriteLine(hl);
             }
-        }
+        }        
 
         public void UpdateLights()
         {            
@@ -73,13 +73,9 @@ namespace HueLampApp.MainpageObjects
             }
         }
 
-        public async void UploadLights()
-        {
-            foreach (HueLamp hl in hueLampen)
-            {
-                hl.On = !hl.On;
-                await LampsConnecter.PutLampProps(hl);
-            }
+        public async void UploadLights(HueLamp lamp)
+        {            
+            await LampsConnecter.PutLampProps(lamp);            
         }
     }
 }

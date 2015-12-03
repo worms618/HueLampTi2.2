@@ -6,61 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <!--<StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Orientation="Horizontal">
-        
-        <RelativePanel>
-            <Button Name="AllLamps" 
-                    Content="Get all lamps" 
-                    Width="auto" Height="auto" 
-                    Click="AllLamps_Click" 
-                    Margin="5"
-                    RelativePanel.LeftOf="UploadLamps"/>
-        
-            <Button Name="UploadLamps" 
-                    Content="upload all lamps" 
-                    Width="auto" Height="auto" 
-                    Click="UploadLamps_Click" 
-                    Margin="5" 
-                    IsEnabled="False"
-                    RelativePanel.AlignRightWithPanel="True"/>
-        </RelativePanel>
-
-        <SplitView Name="Info"  DisplayMode="Inline" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <ToggleButton HorizontalAlignment="Right" Click="ToggleButton_Click">
-                <ToggleButton.Content>
-                    <Border Background="Transparent">
-                        <FontIcon x:Name="Hamburger"
-                                          FontFamily="Segoe MDL2 Assets"
-                                          Glyph="&#xE909;"/>
-                    </Border>
-                </ToggleButton.Content>
-            </ToggleButton>
-            <SplitView.Pane>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="Ip: "/>
-                    <TextBlock Text="Port: " Grid.Row="1"/>
-                    <TextBlock Text="Username: " Grid.Row="2"/>
-
-                    <TextBox Text="{Binding Path=LampsConnecter.IP, Mode=TwoWay}" Grid.Column="1"/>
-                    <TextBox Text="{Binding Path=LampsConnecter.Port, Mode=TwoWay}" Grid.Row ="1" Grid.Column="1"/>
-                    <TextBox Text="{Binding Path=LampsConnecter.Username, Mode=TwoWay}" Grid.Row ="2" Grid.Column="1"/>
-
-                </Grid>
-            </SplitView.Pane>
-        </SplitView>
-    </StackPanel>-->
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>            
@@ -75,8 +21,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Background="Gray" BorderBrush="Gray">
-            <ListView Name="HueLampLijst" Margin="10" ItemsSource="{Binding Path=hueLampen}" Grid.Row="1" Tapped="HueLampLijst_Tapped"  FontSize="30" ScrollViewer.VerticalScrollMode="Auto">
+        <!--Tapped="HueLampLijst_Tapped"-->
+        
+        <Border>
+            <ListView Name="HueLampLijst" Margin="10" ItemsSource="{Binding Path=hueLampen}" Grid.Row="1" FontSize="30" ScrollViewer.VerticalScrollMode="Auto">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -93,7 +41,7 @@
             <TextBlock Name="SelectedLamp"  FontSize="30"/>
         </StackPanel>
 
-        <RelativePanel Grid.Row="2" Grid.ColumnSpan="2">
+        <RelativePanel Grid.Row="2">
             <StackPanel Name="staticNames" Orientation="Vertical" Margin="10" RelativePanel.AlignLeftWithPanel="True">
                 <TextBlock Text="Aan:" FontSize="30"/>
                 <TextBlock Text="Brightness:" FontSize="30"/>
@@ -102,18 +50,32 @@
             </StackPanel>
 
             <StackPanel Name="VariableData" Orientation="Vertical" Margin="10" RelativePanel.RightOf="staticNames">
-                <TextBlock Name="AanTextBlock" FontSize="30"/>
-                <TextBlock Name="BrightnessTextBlock" FontSize="30"/>
-                <TextBlock Name="HueTextBlock" FontSize="30"/>
-                <TextBlock Name="SatTextBlock" FontSize="30"/>                
+                <TextBlock Name="AanTextBlock" FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.On}"/>
+                <TextBlock Name="BrightnessTextBlock" FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.Brightness}"/>
+                <TextBlock Name="HueTextBlock" FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.Hue}"/>
+                <TextBlock Name="SatTextBlock" FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.Sat}"/>                
              </StackPanel>            
-        </RelativePanel>        
-        
-        <StackPanel Orientation="Horizontal" Margin="20" Grid.Row="3">
-            <Button Content="&#xE895;" FontFamily="Segoe MDL2 Assets" Click="UploadLamps_Click" Margin="5,0,0,0"/>
-            <Button Content="&#xE909;" FontFamily="Segoe MDL2 Assets" Margin="5,0,5,0"/>                    
-        </StackPanel>
+        </RelativePanel>
 
-        <Button Content="Update lamp" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <ToggleSwitch Grid.Row="0" IsOn="{Binding ElementName=HueLampLijst, Path=SelectedItem.On, Mode=TwoWay}"/>
+            <Slider Minimum="0" Maximum="255" Grid.Row="1" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Brightness, Mode=TwoWay}"/>
+            <Slider Minimum="0" Maximum="65535" Grid.Row="2" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Hue, Mode=TwoWay}"/>
+            <Slider Minimum="0" Maximum="255" Grid.Row="3" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Sat, Mode=TwoWay}"/>
+        </Grid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="refresh" Content="&#xE117;" FontFamily="Segoe MDL2 assets" Margin="5" Click="refresh_Click" IsEnabled="False"/>
+            <Button Name="info" Content="&#xE128;" FontFamily="Segoe MDL2 assets" Margin="5" Click="info_Click"/>
+        </StackPanel>
+        
+        <Button Name="update" Content="Update lamp" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="update_Click"/>
     </Grid>
 </Page>

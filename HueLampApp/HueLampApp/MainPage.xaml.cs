@@ -35,26 +35,21 @@ namespace HueLampApp
             this.InitializeComponent();
             mvm = new MainViewModel();
             DataContext = mvm;
-            HueLampLijst.ItemsSource = mvm.hueLampen;            
+            HueLampLijst.ItemsSource = mvm.hueLampen;
+            ReceiveUsername();       
+             
         }
 
-        private void AllLamps_Click(object sender, RoutedEventArgs e)
-        {
-            mvm.GetCurrentLightsData();
-            //UploadLamps.IsEnabled = true;          
-        }
-
-        private void UploadLamps_Click(object sender, RoutedEventArgs e)
-        {
-            mvm.GetCurrentLightsData();
-        }
-        
         private void HueLampLijst_Tapped(object sender, TappedRoutedEventArgs e)
         {
             ListView listv = (ListView)sender;
             HueLamp h = (HueLamp)listv.SelectedItem;
             //System.Diagnostics.Debug.WriteLine("TAPPED HueLampLijst: ");
+            UpdateLampInfoBox(h);            
+        }
 
+        private void UpdateLampInfoBox(HueLamp h)
+        {
             if (h != null)
             {
                 SelectedLamp.Text = " " + h.ID;
@@ -62,8 +57,43 @@ namespace HueLampApp
                 BrightnessTextBlock.Text = h.Brightness + "";
                 HueTextBlock.Text = h.Hue + "";
                 SatTextBlock.Text = h.Sat + "";
+            }
+        }
 
+        private void UpdateLampMutatorBox(HueLamp h)
+        {
+            if(h != null)
+            {
+                //toggleSwitch.IsOn = h.On;
 
+            }
+        }
+
+        private void refresh_Click(object sender, RoutedEventArgs e)
+        {
+            mvm.GetCurrentLightsData();
+        }
+
+        private void info_Click(object sender, RoutedEventArgs e)
+        {
+            ReceiveUsername();          
+        }   
+        
+        private async void ReceiveUsername()
+        {
+            if (string.IsNullOrEmpty(mvm.LampsConnecter.Username))
+            {
+                var response = await mvm.LampsConnecter.PostUsername();
+                refresh.IsEnabled = response;
+            }
+        }     
+
+        private async void update_Click(object sender, RoutedEventArgs e)
+        {
+            if (HueLampLijst.SelectedItem != null)
+            {
+                System.Diagnostics.Debug.WriteLine($"Huelamp: {HueLampLijst.SelectedItem.ToString()}");
+                var response = await mvm.LampsConnecter.PutLampProps((HueLamp)HueLampLijst.SelectedItem);
             }
         }
     }
