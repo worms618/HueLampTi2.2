@@ -36,7 +36,7 @@ namespace HueLampApp
             mvm = new MainViewModel();
             DataContext = mvm;
             HueLampLijst.ItemsSource = mvm.hueLampen;
-            ReceiveUsername();       
+            ReceiveUsername();
              
         }
 
@@ -45,7 +45,7 @@ namespace HueLampApp
             ListView listv = (ListView)sender;
             HueLamp h = (HueLamp)listv.SelectedItem;
             //System.Diagnostics.Debug.WriteLine("TAPPED HueLampLijst: ");
-            UpdateLampInfoBox(h);            
+            //UpdateLampInfoBox(h);            
         }
 
         private void UpdateLampInfoBox(HueLamp h)

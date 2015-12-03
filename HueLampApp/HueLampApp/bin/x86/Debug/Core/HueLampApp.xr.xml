@@ -6,8 +6,8 @@
     <RootPropertyPathName Name="Hue" />
     <RootPropertyPathName Name="Brightness" />
     <RootPropertyPathName Name="On" />
-    <RootPropertyPathName Name="hueLampen" />
     <RootPropertyPathName Name="ID" />
+    <RootPropertyPathName Name="hueLampen" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Windows.UI.Xaml.Application">
@@ -65,6 +65,14 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="IsEnabled" />
       <RootEvent Name="Click" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Image">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="IsDoubleTapEnabled" />
+      <RootProperty Name="IsHoldingEnabled" />
+      <RootProperty Name="IsRightTapEnabled" />
+      <RootProperty Name="IsTapEnabled" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ToggleSwitch">
       <RootProperty Name="IsOn" />
