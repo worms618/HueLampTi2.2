@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>      
 
         <Border>
-            <ListView x:ConnectionId='11' Name="HueLampLijst" Margin="10" ItemsSource="{Binding Path=hueLampen}" Grid.Row="1" FontSize="30" ScrollViewer.VerticalScrollMode="Auto">
+            <ListView x:ConnectionId='12' Name="HueLampLijst" Margin="10" ItemsSource="{Binding Path=hueLampen}" Grid.Row="1" FontSize="30" ScrollViewer.VerticalScrollMode="Auto">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -33,25 +33,27 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
+        
+        
 
         <StackPanel Orientation="Horizontal" Margin="20" Grid.Row="1" Grid.ColumnSpan="2">
             <TextBlock Text="Geselecteerde Lamp: "  FontSize="30"/>
-            <TextBlock x:ConnectionId='10' Name="SelectedLamp"  FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.ID}"/>
+            <TextBlock x:ConnectionId='11' Name="SelectedLamp"  FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.ID}"/>
         </StackPanel>
 
         <RelativePanel Grid.Row="2">
-            <StackPanel x:ConnectionId='4' Name="staticNames" Orientation="Vertical" Margin="10" RelativePanel.AlignLeftWithPanel="True">
+            <StackPanel x:ConnectionId='5' Name="staticNames" Orientation="Vertical" Margin="10" RelativePanel.AlignLeftWithPanel="True">
                 <TextBlock Text="Aan:" FontSize="30"/>
                 <TextBlock Text="Brightness:" FontSize="30"/>
                 <TextBlock Text="Hue:" FontSize="30"/>
                 <TextBlock Text="Sat:" FontSize="30"/>
             </StackPanel>
 
-            <StackPanel x:ConnectionId='5' Name="VariableData" Orientation="Vertical" Margin="10" RelativePanel.RightOf="staticNames">
-                <TextBlock x:ConnectionId='6' Name="AanTextBlock" FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.On}"/>
-                <TextBlock x:ConnectionId='7' Name="BrightnessTextBlock" FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.Brightness}"/>
-                <TextBlock x:ConnectionId='8' Name="HueTextBlock" FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.Hue}"/>
-                <TextBlock x:ConnectionId='9' Name="SatTextBlock" FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.Sat}"/>
+            <StackPanel x:ConnectionId='6' Name="VariableData" Orientation="Vertical" Margin="10" RelativePanel.RightOf="staticNames">
+                <TextBlock x:ConnectionId='7' Name="AanTextBlock" FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.On}"/>
+                <TextBlock x:ConnectionId='8' Name="BrightnessTextBlock" FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.Brightness}"/>
+                <TextBlock x:ConnectionId='9' Name="HueTextBlock" FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.Hue}"/>
+                <TextBlock x:ConnectionId='10' Name="SatTextBlock" FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.Sat}"/>
             </StackPanel>
         </RelativePanel>
 
@@ -74,11 +76,12 @@
         </Grid>
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:ConnectionId='2' Name="refresh" Content="&#xE117;" FontFamily="Segoe MDL2 assets" Margin="5"                       IsEnabled="False"/>
-            <Button x:ConnectionId='3' Name="info" Content="&#xE128;" FontFamily="Segoe MDL2 assets" Margin="5"                   />
+            <Button x:ConnectionId='3' Name="refresh" Content="&#xE117;" FontFamily="Segoe MDL2 assets" Margin="5"                       IsEnabled="False"/>
+            <Button x:ConnectionId='4' Name="info" Content="&#xE128;" FontFamily="Segoe MDL2 assets" Margin="5"                   />
         </StackPanel>
 
         <Button x:ConnectionId='1' Name="update" Content="Update lamp" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"                     />
+        <Image x:ConnectionId='2' Name="image" Grid.Row="0" Grid.Column="1" Margin="10" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
     </Grid>
 </Page>
 

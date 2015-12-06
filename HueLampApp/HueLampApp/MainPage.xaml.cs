@@ -36,7 +36,9 @@ namespace HueLampApp
             mvm = MainViewModel.GetInstanceOf();
             DataContext = mvm;
             HueLampLijst.ItemsSource = mvm.hueLampen;
+
             ReceiveUsername();            
+
         }
 
         private void HueLampLijst_Tapped(object sender, TappedRoutedEventArgs e)
@@ -44,7 +46,7 @@ namespace HueLampApp
             ListView listv = (ListView)sender;
             HueLamp h = (HueLamp)listv.SelectedItem;
             //System.Diagnostics.Debug.WriteLine("TAPPED HueLampLijst: ");
-            UpdateLampInfoBox(h);            
+            //UpdateLampInfoBox(h);            
         }
 
         private void UpdateLampInfoBox(HueLamp h)

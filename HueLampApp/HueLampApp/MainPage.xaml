@@ -33,6 +33,8 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
+        
+        
 
         <StackPanel Orientation="Horizontal" Margin="20" Grid.Row="1" Grid.ColumnSpan="2">
             <TextBlock Text="Geselecteerde Lamp: "  FontSize="30"/>
@@ -79,5 +81,6 @@
         </StackPanel>
 
         <Button Name="update" Content="Update lamp" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="update_Click"/>
+        <Image Name="image" Grid.Row="0" Grid.Column="1" Margin="10" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
     </Grid>
 </Page>
