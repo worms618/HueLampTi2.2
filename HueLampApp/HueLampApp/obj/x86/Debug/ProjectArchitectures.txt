@@ -1,1 +1,1 @@
-C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\HueLampApp.csproj;x86
+C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\HueLampApp.csproj;x86

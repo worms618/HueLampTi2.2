@@ -17,20 +17,31 @@ namespace HueLampApp.MainpageObjects
         public UriRouter LampsConnecter { get; }
         public ObservableCollection<HueLamp> hueLampen { get; }
 
-        private JObject jsonObject = null;                
+        private JObject jsonObject = null;
 
-        public MainViewModel()
+        private static MainViewModel mvm;
+        
+        public static MainViewModel GetInstanceOf()
         {
-            LampsConnecter = new UriRouter();
+            if(mvm == null)
+            {
+                mvm = new MainViewModel();
+            }
+            return mvm;
+        }             
+
+        private MainViewModel()
+        {
+            LampsConnecter = UriRouter.GetInstanceOf();
             hueLampen = new ObservableCollection<HueLamp>();               
         }
 
-        public async void GetCurrentLightsData()
+        public async Task<bool> GetCurrentLightsData()
         {
             var response = await LampsConnecter.GetAllLamps();
             if (string.IsNullOrEmpty(response))
             {
-                throw new ArgumentNullException("Lampen data is niet aangekomen");
+                return false;
             }
             else
             {
@@ -38,11 +49,13 @@ namespace HueLampApp.MainpageObjects
                     jsonObject = JObject.Parse(response);
                 }catch(Exception e)
                 {
-                    System.Diagnostics.Debug.WriteLine(response);
-                    System.Diagnostics.Debug.WriteLine(e.Message);
+                    //System.Diagnostics.Debug.WriteLine(response);
+                    //System.Diagnostics.Debug.WriteLine(e.Message);
+                    return false;
                 }
                 //System.Diagnostics.Debug.WriteLine("Amount of huelamps by json parser: " + jsonObject.Count);
                 UpdateList();
+                return true;
             }
         }
 

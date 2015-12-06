@@ -1,0 +1,69 @@
+﻿<Page
+    x:Class="HueLampApp.InfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HueLampApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <RelativePanel>
+            <Button Content="back" x:Name="Back" RelativePanel.AlignLeftWithPanel="True" Click="Back_Click"/>
+        </RelativePanel>
+
+        <RelativePanel Grid.Row="1">
+            
+            <!--Static bockes-->
+            <TextBlock x:Name="IP_Adres" 
+                        Text="IP Adres: " 
+                        FontSize="28"
+                        RelativePanel.AlignLeftWithPanel="True"/>
+            
+            <TextBlock x:Name="Port" 
+                        Text="Port:" 
+                        FontSize="28"
+                        RelativePanel.Below="IP_Adres"/>          
+            
+            <TextBlock x:Name="Username" 
+                        Text="Username: " 
+                        FontSize="28"
+                        RelativePanel.Below="Port"/>            
+
+            <!--Dynamic bockes-->
+            <TextBlock x:Name="IP_Adres_Input"
+                        Text="{Binding Path= IP, Mode=TwoWay}"
+                        FontSize="28"
+                        RelativePanel.RightOf ="Username"/>
+
+            <TextBlock x:Name="Port_Input" 
+                            Text="{Binding Path = Port, Mode=TwoWay}"
+                            FontSize="28"
+                        RelativePanel.RightOf="Username"
+                        RelativePanel.Below="IP_Adres_Input"/>
+
+            <TextBlock x:Name="Username_Input"
+                            Text="{Binding Path=Username, Mode=TwoWay}"
+                            FontSize="28"
+                        RelativePanel.RightOf="Username"
+                        RelativePanel.Below="Port_Input"/>
+            
+            <!--Edit button-->                
+            <Button x:Name="IP_Edit"  Content="Edit" RelativePanel.RightOf="Username_Input" RelativePanel.AlignVerticalCenterWith="IP_Adres" Click="IP_Edit_Click"/>
+            <Button x:Name="Port_Edit" Content="Edit" RelativePanel.RightOf="Username_Input" RelativePanel.Below="IP_Edit" RelativePanel.AlignVerticalCenterWith="Port" Click="Port_Edit_Click"/>
+            <Button x:Name="Username_Edit" Content="Edit" RelativePanel.RightOf="Username_Input" RelativePanel.Below="Port_Edit" RelativePanel.AlignVerticalCenterWith="Username" Click="Username_Edit_Click"/>
+
+            <!--Edit boxes-->
+            <TextBox x:Name="IP_Edit_Box" RelativePanel.RightOf="IP_Edit" RelativePanel.AlignVerticalCenterWith="IP_Edit"/>
+            <TextBox x:Name="Port_Edit_Box" RelativePanel.RightOf="Port_Edit" RelativePanel.Below="IP_Edit_Box" RelativePanel.AlignVerticalCenterWith="Port_Edit"/>
+            <TextBox x:Name="Username_Edit_Box" RelativePanel.RightOf="Username_Edit" RelativePanel.Below="Port_Edit_Box" RelativePanel.AlignVerticalCenterWith="Username_Edit"/>
+
+        </RelativePanel>
+    </Grid>
+</Page>

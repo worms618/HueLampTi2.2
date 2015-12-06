@@ -33,11 +33,10 @@ namespace HueLampApp
         public MainPage()
         {
             this.InitializeComponent();
-            mvm = new MainViewModel();
+            mvm = MainViewModel.GetInstanceOf();
             DataContext = mvm;
             HueLampLijst.ItemsSource = mvm.hueLampen;
-            ReceiveUsername();       
-             
+            ReceiveUsername();            
         }
 
         private void HueLampLijst_Tapped(object sender, TappedRoutedEventArgs e)
@@ -59,24 +58,18 @@ namespace HueLampApp
                 SatTextBlock.Text = h.Sat + "";
             }
         }
+        
 
-        private void UpdateLampMutatorBox(HueLamp h)
+        private async void refresh_Click(object sender, RoutedEventArgs e)
         {
-            if(h != null)
-            {
-                //toggleSwitch.IsOn = h.On;
-
-            }
-        }
-
-        private void refresh_Click(object sender, RoutedEventArgs e)
-        {
-            mvm.GetCurrentLightsData();
+            var response = await mvm.GetCurrentLightsData();
+            refresh.IsEnabled = response;
         }
 
         private void info_Click(object sender, RoutedEventArgs e)
         {
-            ReceiveUsername();          
+            //ReceiveUsername();    
+            this.Frame.Navigate(typeof(InfoPage));            
         }   
         
         private async void ReceiveUsername()
@@ -86,6 +79,10 @@ namespace HueLampApp
                 var response = await mvm.LampsConnecter.PostUsername();
                 refresh.IsEnabled = response;
             }
+            else
+            {
+                refresh.IsEnabled = true;
+            }           
         }     
 
         private async void update_Click(object sender, RoutedEventArgs e)

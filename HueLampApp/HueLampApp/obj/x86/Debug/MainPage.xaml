@@ -19,9 +19,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <!--Tapped="HueLampLijst_Tapped"-->
+        </Grid.ColumnDefinitions>      
 
         <Border>
             <ListView x:ConnectionId='11' Name="HueLampLijst" Margin="10" ItemsSource="{Binding Path=hueLampen}" Grid.Row="1" FontSize="30" ScrollViewer.VerticalScrollMode="Auto">
@@ -38,7 +36,7 @@
 
         <StackPanel Orientation="Horizontal" Margin="20" Grid.Row="1" Grid.ColumnSpan="2">
             <TextBlock Text="Geselecteerde Lamp: "  FontSize="30"/>
-            <TextBlock x:ConnectionId='10' Name="SelectedLamp"  FontSize="30"/>
+            <TextBlock x:ConnectionId='10' Name="SelectedLamp"  FontSize="30" Text="{Binding ElementName=HueLampLijst, Path=SelectedItem.ID}"/>
         </StackPanel>
 
         <RelativePanel Grid.Row="2">

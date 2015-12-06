@@ -887,3 +887,8 @@ C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\Core\HueLampApp.pdb
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\Core\HueLampApp.xr.xml
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\Core\resources.pri
+C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\bin\x86\Debug\InfoPage.xbf
+C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\InfoPage.g.i.cs
+C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\InfoPage.g.cs
+C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\InfoPage.xaml
+C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\InfoPage.xbf

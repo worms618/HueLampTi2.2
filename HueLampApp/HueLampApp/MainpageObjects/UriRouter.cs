@@ -15,6 +15,18 @@ namespace HueLampApp.MainpageObjects
 {
     public class UriRouter : INotifyPropertyChanged
     {
+
+        private static UriRouter LampConnector = null;
+
+        public static UriRouter GetInstanceOf()
+        {
+            if(LampConnector == null)
+            {
+                LampConnector = new UriRouter();
+            }
+            return LampConnector;
+        }
+
         private string _ip;
 
         public string IP
@@ -50,15 +62,13 @@ namespace HueLampApp.MainpageObjects
 
             if (eventhandler != null)
             {
-                //System.Diagnostics.Debug.WriteLine("event is afgegaan");
+                System.Diagnostics.Debug.WriteLine($"event is afgegaan: {propertyname}");
                 eventhandler(this, new PropertyChangedEventArgs(propertyname));
             }
                 
-        }
+        }       
 
-        private UriRouter() { }
-
-        public UriRouter(string username = "",int port = 80,string Ip = "Localhost")
+        private UriRouter(string username = "",int port = 80,string Ip = "Localhost")
         {
             IP = Ip;
             Username = username;
@@ -135,7 +145,7 @@ namespace HueLampApp.MainpageObjects
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                //System.Diagnostics.Debug.WriteLine(e.Message);
                 return string.Empty;
             }
         }
