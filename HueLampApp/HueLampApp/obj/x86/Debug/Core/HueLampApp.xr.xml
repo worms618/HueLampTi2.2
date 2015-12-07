@@ -84,6 +84,17 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Name" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Fill" />
+      <RootProperty Name="Margin" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
+      <RootMethod Name="GetVerticalScrollBarVisibility" />
+      <RootMethod Name="SetVerticalScrollBarVisibility" />
+      <RootMethod Name="GetVerticalScrollMode" />
+      <RootMethod Name="SetVerticalScrollMode" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Image">
       <RootProperty Name="Name" />
       <RootProperty Name="Source" />
@@ -92,12 +103,6 @@
       <RootProperty Name="IsHoldingEnabled" />
       <RootProperty Name="IsRightTapEnabled" />
       <RootProperty Name="IsTapEnabled" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
-      <RootProperty Name="Name" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="Fill" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ToggleSwitch">
       <RootProperty Name="IsOn" />
@@ -112,6 +117,7 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="RenderTransformOrigin" />
       <RootProperty Name="RenderTransform" />
+      <RootEvent Name="DragLeave" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.CompositeTransform">
       <RootProperty Name="ScaleY" />
@@ -123,10 +129,6 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="ItemTemplate" />
       <RootEvent Name="Tapped" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
-      <RootMethod Name="GetVerticalScrollMode" />
-      <RootMethod Name="SetVerticalScrollMode" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
       <RootProperty Name="Template" />

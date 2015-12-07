@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>
@@ -20,7 +20,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>      
+        </Grid.ColumnDefinitions>
 
         <Border>
             <ListView Name="HueLampLijst" Margin="10" ItemsSource="{Binding Path=hueLampen}" Grid.Row="1" FontSize="30" ScrollViewer.VerticalScrollMode="Auto" Tapped="HueLampLijst_Tapped">
@@ -34,8 +34,8 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
-        
-        
+
+
 
         <StackPanel Orientation="Horizontal" Margin="20" Grid.Row="1" Grid.ColumnSpan="2">
             <TextBlock Text="Geselecteerde Lamp: "  FontSize="30"/>
@@ -67,13 +67,14 @@
             </Grid.RowDefinitions>
 
             <ToggleSwitch Grid.Row="0" IsOn="{Binding ElementName=HueLampLijst, Path=SelectedItem.On, Mode=TwoWay}" Height="40" Width="154" Margin="0,14,0,8" Grid.RowSpan="2"/>
-            <Slider Minimum="0" Maximum="254" Grid.Row="1" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Brightness, Mode=TwoWay}" Margin="0,17,15,27" Grid.RowSpan="2"/>
-            <Slider Minimum="0" Maximum="65535" Grid.Row="2" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Hue, Mode=TwoWay}" Margin="0,32,15,12" Grid.RowSpan="2"/>
-            <Slider Minimum="0" Maximum="254" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Sat, Mode=TwoWay}" RenderTransformOrigin="0.506,0.75" Margin="1,102,15,-106">
-                <Slider.RenderTransform>
-                    <CompositeTransform ScaleY="-1"/>
-                </Slider.RenderTransform>
+            <Slider Minimum="0" Maximum="254" Grid.Row="1" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Brightness, Mode=TwoWay}" Margin="0,17,15,27" Grid.RowSpan="2" DragLeave="Slider_DragLeave" />
+            <Slider Minimum="0" Maximum="65535" Grid.Row="2" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Hue, Mode=TwoWay}" Margin="0,32,15,12" Grid.RowSpan="2" DragLeave="Slider_DragLeave" />
+            <Slider Minimum="0" Maximum="254" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Sat, Mode=TwoWay}" RenderTransformOrigin="0.506,0.75" Margin="1,102,15,-106" DragLeave="Slider_DragLeave" >
+            <Slider.RenderTransform>
+                <CompositeTransform ScaleY="-1"/>
+            </Slider.RenderTransform>
             </Slider>
+
         </Grid>
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -82,16 +83,17 @@
         </StackPanel>
 
         <Button Name="update" Content="Update lamp" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="update_Click"/>
-        
+
         <Grid Grid.Row="0" Grid.Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
+
+            <Rectangle Name="colorRect" Fill="Transparent" Margin="60,10,60,86" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
             <Image Name="image" Source="Assets\lamp.png" Margin="10" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
-            <Rectangle Name="colorRect" Grid.Row="1" Width="auto" Height="50" Fill="Transparent"/>
-        </Grid>        
+            
+        </Grid>
     </Grid>
 </Page>

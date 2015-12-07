@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -55,7 +56,11 @@ namespace HueLampApp
 
         private void ChangeColorRect(HueLamp hue)
         {
-            colorRect.Fill = new SolidColorBrush(ColorUtil.getColor(hue));
+            if (hue.On == true)
+                colorRect.Fill = new SolidColorBrush(ColorUtil.getColor(hue));
+            else
+                colorRect.Fill = new SolidColorBrush(Colors.Transparent);
+
         }
 
         private void UpdateLampInfoBox(HueLamp h)
@@ -103,6 +108,11 @@ namespace HueLampApp
                 System.Diagnostics.Debug.WriteLine($"Huelamp: {HueLampLijst.SelectedItem.ToString()}");
                 var response = await mvm.LampsConnecter.PutLampProps((HueLamp)HueLampLijst.SelectedItem);
             }
+        }
+
+        private void Slider_DragLeave(object sender, DragEventArgs e)
+        {
+            ChangeColorRect((HueLamp)HueLampLijst.SelectedItem);
         }
     }
 }

@@ -440,7 +440,6 @@ C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\bin\x86\Debug\Newtons
 C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\Core\Newtonsoft.Json.dll
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\bin\x86\Debug\ApplicationInsights.config
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\bin\x86\Debug\App.xbf
-C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\bin\x86\Debug\HueLampObject\HueLampDetailpage.xbf
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\bin\x86\Debug\MainPage.xbf
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\bin\x86\Debug\HueLampApp.xr.xml
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\bin\x86\Debug\HueLampApp.exe
@@ -681,16 +680,12 @@ C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\HueLampApp.csprojResolveAssemblyReference.cache
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\App.g.i.cs
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\App.g.cs
-C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\HueLampObject\HueLampDetailpage.g.i.cs
-C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\HueLampObject\HueLampDetailpage.g.cs
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\MainPage.g.i.cs
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\MainPage.g.cs
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\XamlTypeInfo.g.cs
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\App.xaml
-C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\HueLampObject\HueLampDetailpage.xaml
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\MainPage.xaml
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\App.xbf
-C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\HueLampObject\HueLampDetailpage.xbf
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\MainPage.xbf
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\XamlSaveStateFile.xml
 C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\HueLampApp.exe
@@ -889,3 +884,10 @@ C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\InfoPag
 C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\InfoPage.xbf
 C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\bin\x86\Debug\Core\Assets\lamp.png
 C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\Core\Assets\lamp.png
+C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\bin\x86\Debug\InfoPage.xbf
+C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\bin\x86\Debug\Core\Assets\lamp.png
+C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\InfoPage.g.i.cs
+C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\InfoPage.g.cs
+C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\InfoPage.xaml
+C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\InfoPage.xbf
+C:\Users\tim\Desktop\Jaar 2\Periode 2\dotNEt\HueLampTi2.2\HueLampApp\HueLampApp\obj\x86\Debug\Core\Assets\lamp.png
