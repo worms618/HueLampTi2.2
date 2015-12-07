@@ -100,11 +100,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorUtil.cs" />
-    <Compile Include="ColorConverter.cs" />
     <Compile Include="HueLampObject\HueLamp.cs" />
-    <Compile Include="HueLampObject\HueLampDetailpage.xaml.cs">
-      <DependentUpon>HueLampDetailpage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="InfoPage.xaml.cs">
       <DependentUpon>InfoPage.xaml</DependentUpon>
     </Compile>
@@ -138,10 +134,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="HueLampObject\HueLampDetailpage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="InfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

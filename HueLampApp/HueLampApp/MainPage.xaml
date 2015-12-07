@@ -7,9 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <local:ColorConverter x:Key="cConverter"/>
-    </Page.Resources>
     
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -26,7 +23,7 @@
         </Grid.ColumnDefinitions>      
 
         <Border>
-            <ListView Name="HueLampLijst" Margin="10" ItemsSource="{Binding Path=hueLampen}" Grid.Row="1" FontSize="30" ScrollViewer.VerticalScrollMode="Auto">
+            <ListView Name="HueLampLijst" Margin="10" ItemsSource="{Binding Path=hueLampen}" Grid.Row="1" FontSize="30" ScrollViewer.VerticalScrollMode="Auto" Tapped="HueLampLijst_Tapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -94,7 +91,7 @@
             </Grid.RowDefinitions>
             
             <Image Name="image" Source="Assets\lamp.png" Margin="10" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
-            <Rectangle Name="colorRect" Grid.Row="1" Width="auto" Height="50" Fill="{Binding ElementName=HueLampLijst, Path=SelectedItem.HSV, Converter={StaticResource ColorConverter}}"/>
+            <Rectangle Name="colorRect" Grid.Row="1" Width="auto" Height="50" Fill="Transparent"/>
         </Grid>        
     </Grid>
 </Page>

@@ -1,6 +1,7 @@
 ﻿using HueLampApp.HueLampObject;
 using HueLampApp.MainpageObjects;
 using HueLampApp.Pasers;
+using HueRemote.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,8 +47,15 @@ namespace HueLampApp
         {
             ListView listv = (ListView)sender;
             HueLamp h = (HueLamp)listv.SelectedItem;
-            //System.Diagnostics.Debug.WriteLine("TAPPED HueLampLijst: ");
+            System.Diagnostics.Debug.WriteLine("TAPPED HueLampLijst: ");
+            ChangeColorRect(h);
+            
             //UpdateLampInfoBox(h);            
+        }
+
+        private void ChangeColorRect(HueLamp hue)
+        {
+            colorRect.Fill = new SolidColorBrush(ColorUtil.getColor(hue));
         }
 
         private void UpdateLampInfoBox(HueLamp h)

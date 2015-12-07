@@ -34,7 +34,6 @@
       <RootMethod Name="SetRowSpan" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
-    <RootType FullName="HueLampApp.HueLampObject.HueLampDetailpage" />
     <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
       <RootProperty Name="Height" />
       <RootProperty Name="MinHeight" />
@@ -123,6 +122,7 @@
       <RootProperty Name="ItemsSource" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="ItemTemplate" />
+      <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
       <RootMethod Name="GetVerticalScrollMode" />
