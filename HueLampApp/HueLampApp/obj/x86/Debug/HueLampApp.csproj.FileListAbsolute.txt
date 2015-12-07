@@ -892,3 +892,5 @@ C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\InfoPag
 C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\InfoPage.g.cs
 C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\InfoPage.xaml
 C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\InfoPage.xbf
+C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\bin\x86\Debug\Core\Assets\lamp.png
+C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\obj\x86\Debug\Core\Assets\lamp.png

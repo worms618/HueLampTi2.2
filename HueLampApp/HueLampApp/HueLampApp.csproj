@@ -99,6 +99,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ColorUtil.cs" />
+    <Compile Include="ColorConverter.cs" />
     <Compile Include="HueLampObject\HueLamp.cs" />
     <Compile Include="HueLampObject\HueLampDetailpage.xaml.cs">
       <DependentUpon>HueLampDetailpage.xaml</DependentUpon>
@@ -121,6 +123,7 @@
     <None Include="HueLampApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\lamp.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

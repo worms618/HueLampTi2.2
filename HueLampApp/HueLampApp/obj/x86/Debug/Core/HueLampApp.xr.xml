@@ -87,11 +87,18 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Image">
       <RootProperty Name="Name" />
+      <RootProperty Name="Source" />
       <RootProperty Name="Margin" />
       <RootProperty Name="IsDoubleTapEnabled" />
       <RootProperty Name="IsHoldingEnabled" />
       <RootProperty Name="IsRightTapEnabled" />
       <RootProperty Name="IsTapEnabled" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Fill" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ToggleSwitch">
       <RootProperty Name="IsOn" />

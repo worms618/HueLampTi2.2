@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Data;
 
 namespace HueLampApp.HueLampObject
 {
@@ -38,6 +39,11 @@ namespace HueLampApp.HueLampObject
         {
             get { return _sat; }
             set { _sat = SetValue(0,255,value); OnPropertyChanged(nameof(Sat)); }
+        }             
+
+        public Tuple<int, long, int> HSV
+        {
+            get { return new Tuple<int, long, int>(Brightness,Hue,Sat); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -102,5 +108,6 @@ namespace HueLampApp.HueLampObject
         {
             return $"ID: {ID} - ON: {On} - Brightness: {Brightness} - Hue: {Hue} - Sat: {Sat}";
         }
+        
     }
 }

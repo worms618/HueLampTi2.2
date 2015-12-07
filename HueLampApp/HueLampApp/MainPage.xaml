@@ -7,6 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <local:ColorConverter x:Key="cConverter"/>
+    </Page.Resources>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>
@@ -81,6 +85,16 @@
         </StackPanel>
 
         <Button Name="update" Content="Update lamp" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="update_Click"/>
-        <Image Name="image" Grid.Row="0" Grid.Column="1" Margin="10" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
+        
+        <Grid Grid.Row="0" Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <Image Name="image" Source="Assets\lamp.png" Margin="10" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False"/>
+            <Rectangle Name="colorRect" Grid.Row="1" Width="auto" Height="50" Fill="{Binding ElementName=HueLampLijst, Path=SelectedItem.HSV, Converter={StaticResource ColorConverter}}"/>
+        </Grid>        
     </Grid>
 </Page>

@@ -37,8 +37,9 @@ namespace HueLampApp
             DataContext = mvm;
             HueLampLijst.ItemsSource = mvm.hueLampen;
 
-            ReceiveUsername();            
-
+            ReceiveUsername();
+            System.Diagnostics.Debug.WriteLine($"Image size: {image.Width} : {image.Height}");
+            System.Diagnostics.Debug.WriteLine($"Color rect size: {colorRect.Width} : {colorRect.Height}");
         }
 
         private void HueLampLijst_Tapped(object sender, TappedRoutedEventArgs e)

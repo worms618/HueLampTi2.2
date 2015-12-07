@@ -21,6 +21,9 @@
     <AppxPackagedFile Include="C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\bin\x86\Debug\Core\ApplicationInsights.config">
       <PackagePath>ApplicationInsights.config</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\bin\x86\Debug\Core\Assets\lamp.png">
+      <PackagePath>Assets\lamp.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\remco\Documents\Git\Huelamp\HueLampApp\HueLampApp\bin\x86\Debug\Core\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
