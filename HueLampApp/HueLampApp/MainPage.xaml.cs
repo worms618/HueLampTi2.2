@@ -48,10 +48,15 @@ namespace HueLampApp
         {
             ListView listv = (ListView)sender;
             HueLamp h = (HueLamp)listv.SelectedItem;
-            System.Diagnostics.Debug.WriteLine("TAPPED HueLampLijst: ");
+            //System.Diagnostics.Debug.WriteLine("TAPPED HueLampLijst: ");
             ChangeColorRect(h);
             
             //UpdateLampInfoBox(h);            
+        }
+
+        private void ChangeColorRectBySelectedLamp()
+        {
+            ChangeColorRect((HueLamp)HueLampLijst.SelectedItem);
         }
 
         private void ChangeColorRect(HueLamp hue)
@@ -109,10 +114,15 @@ namespace HueLampApp
                 var response = await mvm.LampsConnecter.PutLampProps((HueLamp)HueLampLijst.SelectedItem);
             }
         }
-
-        private void Slider_DragLeave(object sender, DragEventArgs e)
+        
+        private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
-            ChangeColorRect((HueLamp)HueLampLijst.SelectedItem);
+            ChangeColorRectBySelectedLamp();
+        }
+
+        private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            ChangeColorRectBySelectedLamp();
         }
     }
 }

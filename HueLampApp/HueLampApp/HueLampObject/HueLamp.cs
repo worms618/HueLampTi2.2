@@ -54,7 +54,7 @@ namespace HueLampApp.HueLampObject
 
             if (eventhandler != null)
             {
-                //System.Diagnostics.Debug.WriteLine($"event is afgegaan: {propertyname}");
+                System.Diagnostics.Debug.WriteLine($"event is afgegaan: {propertyname}");
                 eventhandler(this, new PropertyChangedEventArgs(propertyname));
             }
 

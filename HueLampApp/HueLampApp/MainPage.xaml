@@ -66,10 +66,10 @@
                 <RowDefinition Height="auto" MinHeight="44"/>
             </Grid.RowDefinitions>
 
-            <ToggleSwitch Grid.Row="0" IsOn="{Binding ElementName=HueLampLijst, Path=SelectedItem.On, Mode=TwoWay}" Height="40" Width="154" Margin="0,14,0,8" Grid.RowSpan="2"/>
-            <Slider Minimum="0" Maximum="254" Grid.Row="1" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Brightness, Mode=TwoWay}" Margin="0,17,15,27" Grid.RowSpan="2" DragLeave="Slider_DragLeave" />
-            <Slider Minimum="0" Maximum="65535" Grid.Row="2" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Hue, Mode=TwoWay}" Margin="0,32,15,12" Grid.RowSpan="2" DragLeave="Slider_DragLeave" />
-            <Slider Minimum="0" Maximum="254" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Sat, Mode=TwoWay}" RenderTransformOrigin="0.506,0.75" Margin="1,102,15,-106" DragLeave="Slider_DragLeave" >
+            <ToggleSwitch Grid.Row="0" IsOn="{Binding ElementName=HueLampLijst, Path=SelectedItem.On, Mode=TwoWay}" Height="40" Width="154" Margin="0,14,0,8" Grid.RowSpan="2" Toggled="ToggleSwitch_Toggled"/>
+            <Slider Minimum="0" Maximum="254" Grid.Row="1" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Brightness, Mode=TwoWay}" Margin="0,17,15,27" Grid.RowSpan="2" ValueChanged="Slider_ValueChanged"/>
+            <Slider Minimum="0" Maximum="65535" Grid.Row="2" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Hue, Mode=TwoWay}" Margin="0,32,15,12" Grid.RowSpan="2" ValueChanged="Slider_ValueChanged"/>
+            <Slider Minimum="0" Maximum="254" Value="{Binding ElementName=HueLampLijst, Path=SelectedItem.Sat, Mode=TwoWay}" RenderTransformOrigin="0.506,0.75" Margin="1,102,15,-106" ValueChanged="Slider_ValueChanged">
             <Slider.RenderTransform>
                 <CompositeTransform ScaleY="-1"/>
             </Slider.RenderTransform>
