@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots >
+  <Roots.Interfaces>
+    <RootInterface FullName="Windows.UI.Xaml.Data.IValueConverter" />
+  </Roots.Interfaces>
   <Roots.PropertyPathNames>
     <RootPropertyPathName Name="Username" />
     <RootPropertyPathName Name="Port" />
     <RootPropertyPathName Name="IP" />
+    <RootPropertyPathName Name="MainViewModelm" />
     <RootPropertyPathName Name="SelectedItem" />
     <RootPropertyPathName Name="Sat" />
     <RootPropertyPathName Name="Hue" />
@@ -18,6 +22,8 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Page">
       <RootProperty Name="Content" />
+      <RootProperty Name="DataContext" />
+      <RootProperty Name="Resources" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
       <RootProperty Name="Background" />
@@ -53,6 +59,7 @@
       <RootProperty Name="Text" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="Name" />
+      <RootProperty Name="Foreground" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
       <RootProperty Name="Content" />
@@ -68,9 +75,13 @@
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
       <RootProperty Name="Path" />
       <RootProperty Name="Mode" />
+      <RootProperty Name="RelativeSource" />
       <RootProperty Name="ElementName" />
+      <RootProperty Name="Converter" />
     </RootType>
     <RootType FullName="HueLampApp.InfoPage" />
+    <RootType FullName="Windows.UI.Xaml.Data.RelativeSource" />
+    <RootType FullName="HueLampApp.BoolToColor" />
     <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
       <RootProperty Name="Width" />
     </RootType>
@@ -134,6 +145,7 @@
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
       <RootProperty Name="Template" />
     </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="HueLampApp.MainPage" />
   </Roots.RootTypes>
 </Roots>

@@ -99,6 +99,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BoolToColor.cs" />
     <Compile Include="ColorUtil.cs" />
     <Compile Include="HueLampObject\HueLamp.cs" />
     <Compile Include="InfoPage.xaml.cs">
@@ -109,7 +110,7 @@
     </Compile>
     <Compile Include="MainpageObjects\MainViewModel.cs" />
     <Compile Include="MainpageObjects\UriRouter.cs" />
-    <Compile Include="Pasers\HueLampParser.cs" />
+    <Compile Include="Parsers\HueLampParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

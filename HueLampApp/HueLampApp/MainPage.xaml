@@ -5,8 +5,12 @@
     xmlns:local="using:HueLampApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding MainViewModelm, RelativeSource={RelativeSource Self}}"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <local:BoolToColor x:Key="boolToColor"/>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -23,12 +27,12 @@
         </Grid.ColumnDefinitions>
 
         <Border>
-            <ListView Name="HueLampLijst" Margin="10" ItemsSource="{Binding Path=hueLampen}" Grid.Row="1" FontSize="30" ScrollViewer.VerticalScrollMode="Auto" Tapped="HueLampLijst_Tapped">
+            <ListView Name="HueLampLijst" Margin="10" ItemsSource="{Binding hueLampen}" Grid.Row="1" FontSize="30" ScrollViewer.VerticalScrollMode="Auto" Tapped="HueLampLijst_Tapped">                
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Hue Lamp ID: " FontSize="30"/>
-                            <TextBlock Name="IDLamp" Text="{Binding Path=ID, Mode=TwoWay}"  FontSize="30"/>
+                            <TextBlock Text="Hue Lamp ID: " Foreground="{Binding On, Converter= {StaticResource boolToColor}}" FontSize="30"/>
+                            <TextBlock Name="IDLamp" Text="{Binding ID}" Foreground="{Binding On, Converter= {StaticResource boolToColor}}"  FontSize="30"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

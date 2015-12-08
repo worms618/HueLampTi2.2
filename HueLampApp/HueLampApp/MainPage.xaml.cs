@@ -61,7 +61,7 @@ namespace HueLampApp
 
         private void ChangeColorRect(HueLamp hue)
         {
-            if (hue.On == true)
+            if (hue.On)
                 colorRect.Fill = new SolidColorBrush(ColorUtil.getColor(hue));
             else
                 colorRect.Fill = new SolidColorBrush(Colors.Transparent);
