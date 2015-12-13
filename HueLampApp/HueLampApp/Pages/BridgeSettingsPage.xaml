@@ -1,0 +1,56 @@
+﻿<Page
+    x:Class="HueLampApp.Pages.BridgeSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HueLampApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Name="homeButton" Icon="Home"  Label="Back to mainpage" Click="BackToMainPage"/>
+            <AppBarSeparator />
+            <AppBarButton Name="editButton" Icon="Edit" Label="Set edit mode" Click="RefreshEditStatus"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Page.Resources>
+        <local:IntToString x:Key="intToStringConverter"/>
+    </Page.Resources>
+
+    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--static boxes-->
+            <TextBlock Text="Ip:"/>
+            <TextBlock Text="Port:" Grid.Row="1"/>
+            <TextBlock Text="Username:" Grid.Row="2"/>
+
+            <!--Dynamic boxes-->
+            <TextBlock x:Name="dynamicIpBox" Text="{Binding Connector.Ip, Mode=TwoWay}" Grid.Column="1"/>
+            <TextBlock x:Name="dynamicPortBox" Text="{Binding Connector.Port,Mode=TwoWay,Converter={StaticResource intToStringConverter}}" Grid.Row="1" Grid.Column="1"/>
+            <TextBlock x:Name="dynamicUsernameBox" Text="{Binding Connector.Username,Mode=TwoWay}" Grid.Row="2" Grid.Column="1"/>
+
+            <!--Edit boxes-->
+            <TextBox x:Name="editIpBox" Text="{Binding ElementName=dynamicIpBox,Path=Text, Mode=OneWay}" Grid.Column="1" Visibility="Collapsed" IsEnabled="False"/>
+            <TextBox x:Name="editPortBox" Text="{Binding ElementName=dynamicPortBox, Path=Text,Mode=OneWay}" Grid.Row="1" Grid.Column="1" Visibility="Collapsed" IsEnabled="False"/>
+            <TextBox x:Name="editUsernameBox" Text="{Binding ElementName=dynamicUsernameBox, Path=Text,Mode=OneWay}" Grid.Row="2" Grid.Column="1" Visibility="Collapsed" IsEnabled="False"/>
+
+            <!--Register box-->
+            <Button Name="registerButton" Content="Register" Grid.Row="2" Grid.Column="2" Command="{Binding RegisterUsernameCommand}"/>
+        </Grid>
+    </StackPanel>
+</Page>

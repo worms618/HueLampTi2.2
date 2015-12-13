@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="HueLampApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HueLampApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Setting" Label="Bridge settings" Click="NavigateToBridgeSettingsPage"/>
+                <AppBarSeparator/>
+                <AppBarButton Icon="Refresh" Label="Get last lights data" Command="{Binding GetLatestedLightsDataCommand}"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Page.Resources>
+        <local:BoolToColor x:Key="boolToColorConverter"/>
+        <local:LampColor x:Key="huelampColorConverter"/>
+    </Page.Resources>
+    
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView x:Name="HueLampenLijst" ItemsSource="{Binding HueLampen }" ScrollViewer.VerticalScrollMode="Auto" HorizontalAlignment="Center" VerticalAlignment="Top" Tapped="HueLampenLijst_Tapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Rectangle Fill="{Binding HSV, Converter={StaticResource huelampColorConverter}, Mode=OneWay}" 
+                                   Width="16" Height="16"/>
+                        
+                        <TextBlock Text="Hue lamp ID:" Margin="5"/>                                 
+                        
+                        <TextBlock Text="{Binding ID, Mode=OneWay}" 
+                                   Foreground="{Binding On, Converter={StaticResource boolToColorConverter}, Mode=OneWay}"/>                        
+                        
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+</Page>
