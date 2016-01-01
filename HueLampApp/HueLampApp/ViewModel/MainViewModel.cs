@@ -25,17 +25,12 @@ namespace HueLampApp.ViewModel
         public MainViewModel()
         {
             _huelampen = new ObservableCollection<HueLamp>();
-            _getLatestedLightsDataCommand = new DelegateCommand(GetLatestedLightsData);
+            _getLatestedLightsDataCommand = new DelegateCommand(SendRequestForAllLightsData);
             //_huelampen.Add(new HueLamp(1));            
             //_huelampen.Add(new HueLamp(2) { On = false ,Hue = 0});
         }
-
-        private void GetLatestedLightsData()
-        {
-            var response = SendRequestForAllLightsData();
-        }
-
-        private async Task SendRequestForAllLightsData()
+        
+        public async void SendRequestForAllLightsData()
         {
             BridgeConnector c = BridgeConnector.Instance;
             var response = await c.GetMessage(new Uri($"http://{c.Ip}:{c.Port}/api/{c.Username}/lights/"));

@@ -31,7 +31,7 @@ namespace HueLampApp
             DataContext = MainViewModel.Instance;
             //System.Diagnostics.Debug.WriteLine(MainViewModel.GetInstanceOf().HueLampen.Count);            
         }
-
+        
         private void HueLampenLijst_Tapped(object sender, TappedRoutedEventArgs e)
         {
             //System.Diagnostics.Debug.WriteLine(sender.GetType());
@@ -43,6 +43,14 @@ namespace HueLampApp
         private void NavigateToBridgeSettingsPage(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(BridgeSettingsPage));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(BridgeConnector.Instance.Username))
+            {
+                MainViewModel.Instance.SendRequestForAllLightsData();
+            }
         }
     }
 }
