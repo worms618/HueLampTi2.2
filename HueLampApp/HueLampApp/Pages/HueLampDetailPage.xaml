@@ -17,6 +17,7 @@
 
     <Page.Resources>
         <local:LampColor x:Key="colorOfLamp"/>
+        <local:BoolToVisibility x:Key="boolToVisibility"/>
     </Page.Resources>
     
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -53,10 +54,11 @@
             <TextBlock Text="{Binding Sat, Mode=OneWay}" Grid.Row="3" Grid.Column="1"/>            
             <TextBlock Text="{Binding Brightness, Mode=OneWay}" Grid.Row="4" Grid.Column="1"/>
             
-            <ToggleSwitch IsOn="{Binding On,Mode=TwoWay}" Grid.Row="1" Grid.Column="2"/>
+            <ToggleSwitch x:Name="OnOffSwitch" IsOn="{Binding On,Mode=TwoWay}" Grid.Row="1" Grid.Column="2"/>
         </Grid>
 
-        <Rectangle Fill="{Binding HSV,Converter={StaticResource colorOfLamp}, Mode=OneWay}" Grid.Row="1" Width="auto" Height="50"/>
+        <Rectangle Fill="{Binding HSV,Converter={StaticResource colorOfLamp}, Mode=OneWay}" Grid.Row="1" Width="auto" Height="50" 
+                   Visibility="{x:Bind OnOffSwitch.IsOn,Converter={StaticResource boolToVisibility}, Mode=OneWay}"/>
         
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
@@ -67,17 +69,17 @@
 
             <StackPanel>
                 <TextBlock x:Name="hueBox" Text="Hue:"/>
-                <Slider Minimum="0" Maximum="65535" Value="{Binding Hue,Mode=TwoWay}"/>
+                <Slider x:Name="hueSlider" Minimum="0" Maximum="65535" Value="{Binding Hue,Mode=TwoWay}" IsEnabled="{x:Bind OnOffSwitch.IsOn, Mode=OneWay}"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1">
-                <TextBlock x:Name="SatBox" Text="Sat:"/>
-                <Slider Minimum="0" Maximum="255" Value="{Binding Sat, Mode=TwoWay}"/>
+                <TextBlock x:Name="satBox" Text="Sat:"/>
+                <Slider x:Name="satSlider" Minimum="0" Maximum="255" Value="{Binding Sat, Mode=TwoWay}" IsEnabled="{x:Bind OnOffSwitch.IsOn, Mode=OneWay}"/>
             </StackPanel>
 
             <StackPanel Grid.Row="2">
                 <TextBlock x:Name="brightnessBox" Text="Brightness:"/>
-                <Slider Minimum="0" Maximum="255" Value="{Binding Brightness, Mode=TwoWay}"/>
+                <Slider x:Name="brightSlider" Minimum="0" Maximum="255" Value="{Binding Brightness, Mode=TwoWay}" IsEnabled="{x:Bind OnOffSwitch.IsOn, Mode=OneWay}"/>
             </StackPanel>         
             
             

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
@@ -57,5 +59,23 @@ namespace HueLampApp
             //System.Diagnostics.Debug.WriteLine($"Value.getType: {value.GetType()}\nType: {targetType}");
             return int.Parse((string)value);
         }
-    }    
+    }
+
+    public class BoolToVisibility : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if(value != null && value is bool)
+            {
+                bool b = (bool)value;
+                return b ? Visibility.Visible : Visibility.Collapsed;
+            }            
+            return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

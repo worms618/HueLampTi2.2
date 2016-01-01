@@ -35,8 +35,7 @@ namespace HueLampApp.Pages
             DataContext = BridgeSettingsViewModel.Instance;
             dynamicBoxes = new TextBlock[] { dynamicIpBox, dynamicPortBox, dynamicUsernameBox };
             editBoxes = new TextBox[] { editIpBox, editPortBox, editUsernameBox };
-            buttons = new Button[] { homeButton,editButton, registerButton };
-            ApplicationData.Current.DataChanged += BridgeSettingsViewModel.Instance.Connector.Current_DataChanged;
+            buttons = new Button[] { homeButton,editButton, registerButton };            
         }
 
         private void BackToMainPage(object sender, RoutedEventArgs e)
