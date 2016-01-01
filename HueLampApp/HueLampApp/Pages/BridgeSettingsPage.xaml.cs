@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using HueLampApp.ViewModel;
+using Windows.Storage;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -35,6 +36,7 @@ namespace HueLampApp.Pages
             dynamicBoxes = new TextBlock[] { dynamicIpBox, dynamicPortBox, dynamicUsernameBox };
             editBoxes = new TextBox[] { editIpBox, editPortBox, editUsernameBox };
             buttons = new Button[] { homeButton,editButton, registerButton };
+            ApplicationData.Current.DataChanged += BridgeSettingsViewModel.Instance.Connector.Current_DataChanged;
         }
 
         private void BackToMainPage(object sender, RoutedEventArgs e)

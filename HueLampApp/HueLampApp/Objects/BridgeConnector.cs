@@ -1,6 +1,9 @@
-﻿using System;
+﻿using HueLampApp.Objects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,7 +16,6 @@ namespace HueLampApp
     public class BridgeConnector : PropertyChange
     {
         private static BridgeConnector connector = null;
-
         public static BridgeConnector Instance
         {
             get
@@ -47,20 +49,41 @@ namespace HueLampApp
             set { _port = value; OnPropertyChanged(nameof(Port)); }
         }
 
-        private string _username;
+        private ApplicationDataContainer _settings;
+                
         public string Username
         {
-            get { return _username; }
-            set { _username = value; OnPropertyChanged(nameof(Username)); }
-        }     
-        
-        public BridgeConnector(string ip = "localhost", int port = 80, string username = "")
+            get { return GetUsername(); }//return _username; }
+            set { SaveUsername(value); OnPropertyChanged(nameof(Username)); } //_username = value;
+        }
+
+        public BridgeConnector(string ip = "localhost", int port = 80)
         {
             Ip = ip;
-            Port = port;
-            Username = username;           
+            Port = port;            
+            _settings = ApplicationData.Current.RoamingSettings;
         }
         
+        private void SaveUsername(string username)
+        {            
+            Debug.WriteLine($"Save, Settings: {_settings}, Value: {username}");
+            _settings.Values["username"] = username;
+        }
+
+
+        private string GetUsername()
+        {            
+            Debug.WriteLine($"Get, Settings: {_settings}");
+            return _settings.Values["username"] as string;
+        }
+       
+        
+        public void Current_DataChanged(ApplicationData sender, object args)
+        {
+            Debug.WriteLine("Roaming data is veranderd");
+        }
+
+
         //username
         public async Task<HttpResponseMessage> PostMessage(HttpStringContent content,Uri uri)
         {
