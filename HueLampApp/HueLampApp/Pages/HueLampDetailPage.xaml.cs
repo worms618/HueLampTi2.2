@@ -31,7 +31,7 @@ namespace HueLampApp.Pages
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            HueLampDetailPageViewModel.Instance.SelectedHueLamp.SendPropertys();
+            HueLampDetailPageViewModel.Instance.SelectedHueLamp.SendAllPropertys();
             Frame.Navigate(typeof(MainPage));
         }
     }
