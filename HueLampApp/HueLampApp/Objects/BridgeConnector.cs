@@ -62,6 +62,7 @@ namespace HueLampApp
             Ip = ip;
             Port = port;            
             _settings = ApplicationData.Current.RoamingSettings;
+            ApplicationData.Current.DataChanged += Current_DataChanged;
         }
         
         private void SaveUsername(string username)

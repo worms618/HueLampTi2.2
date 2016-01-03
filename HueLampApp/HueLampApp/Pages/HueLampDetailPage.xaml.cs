@@ -1,6 +1,7 @@
 ﻿using HueLampApp.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,16 +24,17 @@ namespace HueLampApp.Pages
     /// </summary>
     public sealed partial class HueLampDetailPage : Page
     {
+        private Slider[] _sliders;
         public HueLampDetailPage()
         {
             this.InitializeComponent();
             DataContext = HueLampDetailPageViewModel.Instance.SelectedHueLamp;
+            _sliders = new Slider[] { hueSlider, satSlider, brightSlider };
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            HueLampDetailPageViewModel.Instance.SelectedHueLamp.SendPropertys();
+        {            
             Frame.Navigate(typeof(MainPage));
-        }
+        }        
     }
 }

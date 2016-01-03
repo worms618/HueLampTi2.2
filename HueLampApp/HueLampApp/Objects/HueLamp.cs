@@ -20,6 +20,7 @@ namespace HueLampApp
             get { return _on; }
             set { _on = value;
                 OnPropertyChanged(nameof(On));
+                SendAllPropertys();
                 }
         }
 
@@ -30,6 +31,7 @@ namespace HueLampApp
             set { _brightness = SetValue(0,255,value);
                 SetHSV();
                 OnPropertyChanged(nameof(Brightness));
+                SendAllPropertys();
                 }
         }
 
@@ -40,6 +42,7 @@ namespace HueLampApp
             set {_hue = SetValue(0,65535,value);
                 SetHSV();
                 OnPropertyChanged(nameof(Hue));
+                SendAllPropertys();
                 }
         }
 
@@ -50,11 +53,11 @@ namespace HueLampApp
             set { _sat = SetValue(0,255,value);
                 SetHSV();
                 OnPropertyChanged(nameof(Sat));
+                SendAllPropertys();
                 }
         }
 
         private Tuple<int, long, int> _hsv;
-
         public Tuple<int, long, int> HSV
         {
             get { return _hsv; }
@@ -107,7 +110,7 @@ namespace HueLampApp
         {
             ID = id;
             UpdateHueLamp(jsonObject);
-        }
+        }        
 
         public void UpdateHueLamp(JObject jsonObject)
         {
@@ -116,13 +119,8 @@ namespace HueLampApp
             Hue = (long)jsonObject      ["" + ID]["state"]["hue"];
             Sat = (int)jsonObject       ["" + ID]["state"]["sat"];
         }
-
-        public void SendPropertys()
-        {
-            var response = SendAllPropertys();
-        }
-
-        private async Task SendAllPropertys()
+        
+        public async void SendAllPropertys()
         {
             BridgeConnector bc = BridgeConnector.Instance;
             HttpStringContent content = new HttpStringContent
