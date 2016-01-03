@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using HueLampApp.Objects;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -67,14 +67,14 @@ namespace HueLampApp
         
         private void SaveUsername(string username)
         {            
-            Debug.WriteLine($"Save, Settings: {_settings}, Value: {username}");
+            //Debug.WriteLine($"Save, Settings: {_settings}, Value: {username}");
             _settings.Values["username"] = username;
         }
 
 
         private string GetUsername()
         {            
-            Debug.WriteLine($"Get, Settings: {_settings}");
+            //Debug.WriteLine($"Get, Settings: {_settings}");
             return _settings.Values["username"] as string;
         }
        

@@ -23,13 +23,11 @@ namespace HueLampApp.Pages
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class HueLampDetailPage : Page
-    {
-        private Slider[] _sliders;
+    {       
         public HueLampDetailPage()
         {
             this.InitializeComponent();
-            DataContext = HueLampDetailPageViewModel.Instance.SelectedHueLamp;
-            _sliders = new Slider[] { hueSlider, satSlider, brightSlider };
+            DataContext = HueLampDetailPageViewModel.Instance.SelectedHueLamp;            
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)

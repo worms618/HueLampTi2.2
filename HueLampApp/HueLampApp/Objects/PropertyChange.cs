@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HueLampApp
+namespace HueLampApp.Objects
 {
     public class PropertyChange : INotifyPropertyChanged
     {
@@ -17,7 +17,7 @@ namespace HueLampApp
 
             if (eventhandler != null)
             {
-                //System.Diagnostics.Debug.WriteLine($"Event is afgegaan: {propertyname}");
+                //System.Diagnostics.Debug.WriteLine($"Property is verandert: {propertyname}");
                 eventhandler(this, new PropertyChangedEventArgs(propertyname));
             }
         }
