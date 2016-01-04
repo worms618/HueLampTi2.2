@@ -14,7 +14,17 @@ namespace HueLampApp
     public class HueLamp : PropertyChange
     {
         public int ID { get; }
-        
+
+        private string _name;
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value;
+                OnPropertyChanged(nameof(Name));
+                SendAllPropertys();
+                }
+        }
+
         private bool _on;
         public bool On
         {
@@ -115,6 +125,7 @@ namespace HueLampApp
 
         public void UpdateHueLamp(JObject jsonObject)
         {
+            Name = (string)jsonObject   ["" + ID]["name"];
             On = (bool)jsonObject       ["" + ID]["state"]["on"];
             Brightness = (int)jsonObject["" + ID]["state"]["bri"];
             Hue = (long)jsonObject      ["" + ID]["state"]["hue"];
@@ -130,11 +141,8 @@ namespace HueLampApp
                                 Windows.Storage.Streams.UnicodeEncoding.Utf8,
                                 "application/json"
                     );
-
-            
-
             Uri uriLampState = new Uri($"http://{bc.Ip}:{bc.Port}/api/{bc.Username}/light/{ID}/state");
-            var response = await bc.PutMessage(content,uriLampState);            
+            await bc.PutMessage(content,uriLampState);            
         }
 
         public override string ToString()

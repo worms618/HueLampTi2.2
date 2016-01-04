@@ -13,7 +13,7 @@
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Setting" Label="Bridge settings" Click="NavigateToBridgeSettingsPage"/>
                 <AppBarSeparator/>
-                <AppBarButton Icon="Refresh" Label="Get last lights data" Command="{Binding GetLatestedLightsDataCommand}"/>
+                <AppBarButton Icon="Refresh" Label="Get last lights data" Command="{Binding GetLatestedLightsDataCommand}"/>                
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
@@ -23,22 +23,38 @@
         <local:LampColor x:Key="huelampColorConverter"/>
     </Page.Resources>
     
-    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView x:Name="HueLampenLijst" ItemsSource="{Binding HueLampen }" ScrollViewer.VerticalScrollMode="Auto" HorizontalAlignment="Center" VerticalAlignment="Top" Tapped="HueLampenLijst_Tapped">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="0">
+            <Button Content="Sort by on" Command="{Binding SortListOnCommand}"/>
+            <Button Content="Sort by id" Command="{Binding SortListIdCommand}"/>
+            <Button Content="Sort by name" Command="{Binding SortListNameCommand}"/>
+        </StackPanel>
+        
+        <ListView x:Name="HueLampenLijst" 
+                  ItemsSource="{Binding HueLampen }" 
+                  ScrollViewer.VerticalScrollMode="Auto" 
+                  HorizontalAlignment="Center" 
+                  VerticalAlignment="Top" 
+                  Grid.Column="1"
+                  Tapped="HueLampenLijst_Tapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Rectangle Fill="{Binding HSV, Converter={StaticResource huelampColorConverter}, Mode=OneWay}" 
                                    Width="16" Height="16"/>
                         
-                        <TextBlock Text="Hue lamp ID:" Margin="5"/>                                 
-                        
-                        <TextBlock Text="{Binding ID, Mode=OneWay}" 
+                        <TextBlock Text="{Binding Name, Mode=OneWay}" 
                                    Foreground="{Binding On, Converter={StaticResource boolToColorConverter}, Mode=OneWay}"/>                        
                         
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackPanel>
+    </Grid>
 </Page>
