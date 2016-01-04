@@ -34,6 +34,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -43,18 +44,20 @@
             </Grid.ColumnDefinitions>
             
             <TextBlock Text="ID:"/>
-            <TextBlock Text="On:" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBlock Text="Hue:" Grid.Row="2"/>
-            <TextBlock Text="Sat:" Grid.Row="3"/>            
-            <TextBlock Text="Brightness:" Grid.Row="4"/>
+            <TextBlock Text="Name:" Grid.Row="1"/>
+            <TextBlock Text="On:" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBlock Text="Hue:" Grid.Row="3"/>
+            <TextBlock Text="Sat:" Grid.Row="4"/>            
+            <TextBlock Text="Brightness:" Grid.Row="5"/>
 
             <TextBlock Text="{Binding ID, Mode=OneWay}" Grid.Column="1"/>
-            <TextBlock Text="{Binding On, Mode=OneWay}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
-            <TextBlock Text="{Binding Hue, Mode=OneWay}" Grid.Row="2" Grid.Column="1"/>
-            <TextBlock Text="{Binding Sat, Mode=OneWay}" Grid.Row="3" Grid.Column="1"/>            
-            <TextBlock Text="{Binding Brightness, Mode=OneWay}" Grid.Row="4" Grid.Column="1"/>
+            <TextBlock Text="{Binding Name,Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
+            <TextBlock Text="{Binding On, Mode=OneWay}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Hue, Mode=OneWay}" Grid.Row="3" Grid.Column="1"/>
+            <TextBlock Text="{Binding Sat, Mode=OneWay}" Grid.Row="4" Grid.Column="1"/>            
+            <TextBlock Text="{Binding Brightness, Mode=OneWay}" Grid.Row="5" Grid.Column="1"/>
             
-            <ToggleSwitch x:Name="OnOffSwitch" IsOn="{Binding On,Mode=TwoWay}" Grid.Row="1" Grid.Column="2"/>
+            <ToggleSwitch x:Name="OnOffSwitch" IsOn="{Binding On,Mode=TwoWay}" Grid.Row="2" Grid.Column="2"/>
         </Grid>
 
         <Rectangle Fill="{Binding HSV,Converter={StaticResource colorOfLamp}, Mode=OneWay}" Grid.Row="1" Width="auto" Height="50" 

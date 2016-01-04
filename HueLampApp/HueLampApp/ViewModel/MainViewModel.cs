@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,26 +11,42 @@ using System.Windows.Input;
 
 namespace HueLampApp.ViewModel
 {
-    public class MainViewModel : Singleton<MainViewModel>
+    public class MainViewModel : Singleton<MainViewModel>, INotifyPropertyChanged
     {
-        
-        private ObservableCollection<HueLamp> _huelampen;
-        public ObservableCollection<HueLamp> HueLampen { get { return _huelampen; } }
-
-        private ICommand _getLatestedLightsDataCommand;
-        public ICommand GetLatestedLightsDataCommand
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propertyname)
         {
-            get { return _getLatestedLightsDataCommand; }
+            var eventhandler = PropertyChanged;
+
+            if (eventhandler != null)
+            {
+                //System.Diagnostics.Debug.WriteLine($"Property is verandert: {propertyname}");
+                eventhandler(this, new PropertyChangedEventArgs(propertyname));
+            }
         }
-        
+
+        private ObservableCollection<HueLamp> _huelampen;
+        public ObservableCollection<HueLamp> HueLampen
+        {
+            get { return _huelampen; }
+            set { _huelampen = value; OnPropertyChanged(nameof(HueLampen)); }
+        }
+
+        //icommands
+        public ICommand GetLatestedLightsDataCommand { get; }
+        public ICommand SortListOnCommand { get; }
+        public ICommand SortListIdCommand { get; }
+        public ICommand SortListNameCommand { get; }
+
         public MainViewModel()
         {
             _huelampen = new ObservableCollection<HueLamp>();
-            _getLatestedLightsDataCommand = new DelegateCommand(SendRequestForAllLightsData);
-            //_huelampen.Add(new HueLamp(1));            
-            //_huelampen.Add(new HueLamp(2) { On = false ,Hue = 0});
+            GetLatestedLightsDataCommand = new DelegateCommand(SendRequestForAllLightsData);
+            SortListOnCommand = new DelegateCommand(SortListOn);
+            SortListIdCommand = new DelegateCommand(SortListId);
+            SortListNameCommand = new DelegateCommand(SortListName);
         }
-        
+
         public async void SendRequestForAllLightsData()
         {
             BridgeConnector c = BridgeConnector.Instance;
@@ -62,6 +79,43 @@ namespace HueLampApp.ViewModel
             {
                 h.UpdateHueLamp(jobject);
             }
+        }
+
+        private void MakeNewList(IEnumerable<HueLamp> sortedList)
+        {
+            HueLampen = new ObservableCollection<HueLamp>(sortedList);
+        }
+        
+
+        private void SortListOn()
+        {
+            var sortLamps = 
+            from l in _huelampen
+            orderby !l.On, l.ID
+            select l;
+            MakeNewList(sortLamps);            
+        }
+        
+        
+        private void SortListId()
+        {
+            MakeNewList
+                (
+                from l in _huelampen
+                orderby l.ID
+                select l
+                );
+        }
+
+
+        private void SortListName()
+        {
+            MakeNewList
+                (
+                from l in _huelampen
+                orderby l.Name
+                select l
+                );
         }
     }
 }

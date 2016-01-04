@@ -47,10 +47,10 @@ namespace HueLampApp
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(BridgeConnector.Instance.Username))
-            {
-                MainViewModel.Instance.SendRequestForAllLightsData();
-            }
-        }
+            //if (!string.IsNullOrEmpty(BridgeConnector.Instance.Username))
+            //{
+            //    MainViewModel.Instance.SendRequestForAllLightsData();
+            //}
+        }        
     }
 }
