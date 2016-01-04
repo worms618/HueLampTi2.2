@@ -132,7 +132,7 @@ namespace HueLampApp
             Sat = (int)jsonObject       ["" + ID]["state"]["sat"];
         }
         
-        public async void SendAllPropertys()
+        public void SendAllPropertys()
         {
             BridgeConnector bc = BridgeConnector.Instance;
             HttpStringContent content = new HttpStringContent
@@ -142,7 +142,7 @@ namespace HueLampApp
                                 "application/json"
                     );
             Uri uriLampState = new Uri($"http://{bc.Ip}:{bc.Port}/api/{bc.Username}/light/{ID}/state");
-            await bc.PutMessage(content,uriLampState);            
+            bc.PutMessage(content,uriLampState);            
         }
 
         public override string ToString()

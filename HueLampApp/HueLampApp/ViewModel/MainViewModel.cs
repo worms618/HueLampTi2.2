@@ -51,12 +51,15 @@ namespace HueLampApp.ViewModel
         {
             BridgeConnector c = BridgeConnector.Instance;
             var response = await c.GetMessage(new Uri($"http://{c.Ip}:{c.Port}/api/{c.Username}/lights/"));
-            var allLightsData = await response.Content.ReadAsStringAsync();
-            if (!string.IsNullOrEmpty(allLightsData))
+            if(response != null)
             {
-                JObject jobject = JObject.Parse(allLightsData);
-                UpdateList(jobject);
-            }
+                var allLightsData = await response.Content.ReadAsStringAsync();
+                if (!string.IsNullOrEmpty(allLightsData))
+                {
+                    JObject jobject = JObject.Parse(allLightsData);
+                    UpdateList(jobject);
+                }
+            }            
         }
 
         private void UpdateList(JObject jobject)

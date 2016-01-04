@@ -49,6 +49,13 @@ namespace HueLampApp
             set { _port = value; OnPropertyChanged(nameof(Port)); }
         }
 
+        private bool _online;
+        public bool Online
+        {
+            get { CheckBridge(); return _online; }
+            set { _online = value; OnPropertyChanged(nameof(Online)); }
+        }
+
         private ApplicationDataContainer _settings;
                 
         public string Username
@@ -84,6 +91,13 @@ namespace HueLampApp
             Debug.WriteLine("Roaming data is veranderd");
         }
 
+        public async void CheckBridge()
+        {            
+            Uri checkUri = new Uri($"http://{Ip}:{Port}/api/{Username}/lights/");
+            var response = await GetMessage(checkUri);
+            Online = response != null;
+        }
+
 
         //username
         public async Task<HttpResponseMessage> PostMessage(HttpStringContent content,Uri uri)
@@ -105,7 +119,7 @@ namespace HueLampApp
                 return response;
             }catch(Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                Debug.WriteLine(e.Message);
                 return null;
             }            
         }
@@ -119,7 +133,6 @@ namespace HueLampApp
             try
             {
                 HttpClient client = new HttpClient();
-
                 var response = await client.GetAsync(uri).AsTask(cts.Token);
 
                 if (!response.IsSuccessStatusCode)
@@ -137,28 +150,18 @@ namespace HueLampApp
         }
 
         //send lights info
-        public async Task<HttpResponseMessage> PutMessage(HttpStringContent content, Uri uri)
+        public async void PutMessage(HttpStringContent content, Uri uri)
         {
             var cts = new CancellationTokenSource();
             cts.CancelAfter(5000);
-
             try
             {
                 HttpClient client = new HttpClient();
-
-                var response = await client.PutAsync(uri, content).AsTask(cts.Token);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    return null;
-                }
-
-                return response;
+                await client.PutAsync(uri, content).AsTask(cts.Token);
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                return null;
+                System.Diagnostics.Debug.WriteLine(e.Message);                
             }
         }
     }

@@ -23,12 +23,11 @@
         <local:LampColor x:Key="huelampColorConverter"/>
     </Page.Resources>
     
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
         <StackPanel Orientation="Vertical"
                     Grid.Column="0">
             <Button Content="Sort by on" Command="{Binding SortListOnCommand}"/>
@@ -41,7 +40,7 @@
                   ScrollViewer.VerticalScrollMode="Auto" 
                   HorizontalAlignment="Center" 
                   VerticalAlignment="Top" 
-                  Grid.Column="1"
+                  Grid.Column="1"                  
                   Tapped="HueLampenLijst_Tapped">
             <ListView.ItemTemplate>
                 <DataTemplate>

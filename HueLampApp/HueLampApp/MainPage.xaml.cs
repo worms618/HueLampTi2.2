@@ -28,7 +28,7 @@ namespace HueLampApp
         public MainPage()
         {
             this.InitializeComponent();
-            DataContext = MainViewModel.Instance;
+            DataContext = MainViewModel.Instance;            
             //System.Diagnostics.Debug.WriteLine(MainViewModel.GetInstanceOf().HueLampen.Count);            
         }
         

@@ -26,31 +26,31 @@ namespace HueLampApp.ViewModel
         public BridgeSettingsViewModel()
         {
             _connector = BridgeConnector.Instance;
-            _registerUsernameCommand = new DelegateCommand(RegisterUsername);
+            _registerUsernameCommand = new DelegateCommand(SendRequestUsername);
         }
-
-        private void RegisterUsername()
-        {
-            var response = SendRequestUsername();                           
-        }
-
-        private async Task SendRequestUsername()
+        
+        private async void SendRequestUsername()
         {
             var response = await
                 Connector.PostMessage(BridgeConnector.Content_Username,
                 new Uri($"http://{Connector.Ip}:{Connector.Port}/api"));
-            var username = await response.Content.ReadAsStringAsync();
-            if (!string.IsNullOrEmpty(username))
+
+            if(response != null)
             {
-                try
+                var username = await response.Content.ReadAsStringAsync();
+                if (!string.IsNullOrEmpty(username))
                 {
-                    Connector.Username = GetUsernameOutOfJson(username);
-                }catch(Exception e)
-                {
-                    System.Diagnostics.Debug.WriteLine(e.Message);
+                    try
+                    {
+                        Connector.Username = GetUsernameOutOfJson(username);
+                    }
+                    catch (Exception e)
+                    {
+                        System.Diagnostics.Debug.WriteLine(e.Message);
+                    }
+
                 }
-                
-            }
+            }            
         }
 
         private string GetUsernameOutOfJson(string jsonString)
