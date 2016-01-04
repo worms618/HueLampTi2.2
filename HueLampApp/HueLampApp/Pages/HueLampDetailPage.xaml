@@ -82,7 +82,7 @@
 
             <StackPanel Grid.Row="2">
                 <TextBlock x:Name="brightnessBox" Text="Brightness:"/>
-                <Slider x:Name="brightSlider" Minimum="0" Maximum="255" Value="{Binding Brightness, Mode=TwoWay}" IsEnabled="{x:Bind OnOffSwitch.IsOn, Mode=OneWay}"/>
+                <Slider x:Name="brightSlider" Minimum="0" Maximum="254" Value="{Binding Brightness, Mode=TwoWay}" IsEnabled="{x:Bind OnOffSwitch.IsOn, Mode=OneWay}"/>
             </StackPanel>         
             
             
