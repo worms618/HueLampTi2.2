@@ -18,11 +18,14 @@
 
     <Page.Resources>
         <local:IntToString x:Key="intToStringConverter"/>
+        <local:BoolToColor x:Key="boolToColorConverter"/>
+        <local:OnlineText x:Key="onlineTextConverter"/>
     </Page.Resources>
 
     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -40,17 +43,49 @@
             <TextBlock Text="Username:" Grid.Row="2"/>
 
             <!--Dynamic boxes-->
-            <TextBlock x:Name="dynamicIpBox" Text="{Binding Connector.Ip, Mode=TwoWay}" Grid.Column="1"/>
-            <TextBlock x:Name="dynamicPortBox" Text="{Binding Connector.Port,Mode=TwoWay,Converter={StaticResource intToStringConverter}}" Grid.Row="1" Grid.Column="1"/>
-            <TextBlock x:Name="dynamicUsernameBox" Text="{Binding Connector.Username,Mode=TwoWay}" Grid.Row="2" Grid.Column="1"/>
+            <TextBlock x:Name="dynamicIpBox" 
+                       Text="{Binding Connector.Ip, Mode=TwoWay}" 
+                       Grid.Column="1"/>
+            <TextBlock x:Name="dynamicPortBox" 
+                       Text="{Binding Connector.Port,Mode=TwoWay,Converter={StaticResource intToStringConverter}}" 
+                       Grid.Row="1" 
+                       Grid.Column="1"/>
+            <TextBlock x:Name="dynamicUsernameBox" 
+                       Text="{Binding Connector.Username,Mode=TwoWay}" 
+                       Grid.Row="2" 
+                       Grid.Column="1"/>
 
             <!--Edit boxes-->
-            <TextBox x:Name="editIpBox" Text="{Binding ElementName=dynamicIpBox,Path=Text, Mode=OneWay}" Grid.Column="1" Visibility="Collapsed" IsEnabled="False"/>
-            <TextBox x:Name="editPortBox" Text="{Binding ElementName=dynamicPortBox, Path=Text,Mode=OneWay}" Grid.Row="1" Grid.Column="1" Visibility="Collapsed" IsEnabled="False"/>
-            <TextBox x:Name="editUsernameBox" Text="{Binding ElementName=dynamicUsernameBox, Path=Text,Mode=OneWay}" Grid.Row="2" Grid.Column="1" Visibility="Collapsed" IsEnabled="False"/>
+            <TextBox x:Name="editIpBox" 
+                     Text="{Binding ElementName=dynamicIpBox,Path=Text, Mode=OneWay}" 
+                     Grid.Column="1" 
+                     Visibility="Collapsed" 
+                     IsEnabled="False"/>
+            <TextBox x:Name="editPortBox" 
+                     Text="{Binding ElementName=dynamicPortBox, Path=Text,Mode=OneWay}" 
+                     Grid.Row="1" 
+                     Grid.Column="1" 
+                     Visibility="Collapsed" 
+                     IsEnabled="False"/>
+            <TextBox x:Name="editUsernameBox" 
+                     Text="{Binding ElementName=dynamicUsernameBox, Path=Text,Mode=OneWay}" 
+                     Grid.Row="2" 
+                     Grid.Column="1" 
+                     Visibility="Collapsed" 
+                     IsEnabled="False"/>
 
             <!--Register box-->
-            <Button Name="registerButton" Content="Register" Grid.Row="2" Grid.Column="2" Command="{Binding RegisterUsernameCommand}"/>
+            <Button Name="registerButton" 
+                    Content="Register" 
+                    Grid.Row="2" 
+                    Grid.Column="2" 
+                    Command="{Binding RegisterUsernameCommand}"/>
+            
+            <!--Connection string-->
+            <TextBlock Grid.Row="3" 
+                       Grid.ColumnSpan="3" 
+                       Text="{Binding Connector.Online,Converter={StaticResource onlineTextConverter},Mode=OneWay}" 
+                       Foreground="{Binding Connector.Online,Converter={StaticResource boolToColorConverter},Mode=OneWay}"/>
         </Grid>
     </StackPanel>
 </Page>

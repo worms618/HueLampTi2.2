@@ -52,7 +52,7 @@ namespace HueLampApp
         private bool _online;
         public bool Online
         {
-            get { CheckBridge(); return _online; }
+            get { return _online; }
             set { _online = value; OnPropertyChanged(nameof(Online)); }
         }
 

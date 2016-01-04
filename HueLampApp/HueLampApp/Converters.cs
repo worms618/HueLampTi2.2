@@ -78,4 +78,22 @@ namespace HueLampApp
             throw new NotImplementedException();
         }
     }
+
+    public class OnlineText : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if(value != null && value is bool)
+            {
+                bool b = (bool)value;
+                return b ? "You are connected" : "No connection";
+            }
+            return "Error";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
