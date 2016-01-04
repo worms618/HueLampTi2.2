@@ -77,7 +77,7 @@
 
             <StackPanel Grid.Row="1">
                 <TextBlock x:Name="satBox" Text="Sat:"/>
-                <Slider x:Name="satSlider" Minimum="0" Maximum="255" Value="{Binding Sat, Mode=TwoWay}" IsEnabled="{x:Bind OnOffSwitch.IsOn, Mode=OneWay}"/>
+                <Slider x:Name="satSlider" Minimum="0" Maximum="254" Value="{Binding Sat, Mode=TwoWay}" IsEnabled="{x:Bind OnOffSwitch.IsOn, Mode=OneWay}"/>
             </StackPanel>
 
             <StackPanel Grid.Row="2">
