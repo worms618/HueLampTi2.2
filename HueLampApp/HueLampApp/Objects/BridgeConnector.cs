@@ -57,11 +57,12 @@ namespace HueLampApp
         }
 
         private ApplicationDataContainer _settings;
-                
+
+        private string _username;
         public string Username
         {
-            get { return GetUsername(); }//return _username; }
-            set { SaveUsername(value); OnPropertyChanged(nameof(Username)); } //_username = value;
+            get { return _username; }//return _username; }
+            set { _username = value; SaveUsername(); OnPropertyChanged(nameof(Username)); } //_username = value;
         }
 
         public BridgeConnector(string ip = "localhost", int port = 80)
@@ -70,19 +71,21 @@ namespace HueLampApp
             Port = port;            
             _settings = ApplicationData.Current.RoamingSettings;
             ApplicationData.Current.DataChanged += Current_DataChanged;
+            GetUsername();
         }
         
-        private void SaveUsername(string username)
+        private void SaveUsername()
         {            
             //Debug.WriteLine($"Save, Settings: {_settings}, Value: {username}");
-            _settings.Values["username"] = username;
+            _settings.Values["username"] = _username;
         }
 
 
-        private string GetUsername()
+        private void GetUsername()
         {            
-            //Debug.WriteLine($"Get, Settings: {_settings}");
-            return _settings.Values["username"] as string;
+            Debug.WriteLine($"Get, Settings: {_settings}");
+            Username = _settings.Values["username"] as string;
+            //CheckBridge();
         }
        
         
@@ -92,12 +95,17 @@ namespace HueLampApp
         }
 
         public async void CheckBridge()
-        {            
+        {
+            //Debug.WriteLine("making uri");
             Uri checkUri = new Uri($"http://{Ip}:{Port}/api/{Username}/lights/");
+            //Debug.WriteLine("uri created, making get message");
             var response = await GetMessage(checkUri);
-            Online = response != null;
+            //Debug.WriteLine($"response had come {response}");
+            var content = await response.Content.ReadAsStringAsync();
+            //Debug.WriteLine("content had been read");
+            Online = string.IsNullOrEmpty(content);
+            //Debug.WriteLine($"online property has beed set: {Online}");
         }
-
 
         //username
         public async Task<HttpResponseMessage> PostMessage(HttpStringContent content,Uri uri)

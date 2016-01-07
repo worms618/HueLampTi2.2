@@ -16,17 +16,13 @@ namespace HueLampApp.ViewModel
         {
             get { return _connector; }           
         }
-
-        private ICommand _registerUsernameCommand;
-        public ICommand RegisterUsernameCommand
-        {
-            get { return _registerUsernameCommand; }
-        }
+        
+        public ICommand RegisterUsernameCommand { get; }        
 
         public BridgeSettingsViewModel()
         {
             _connector = BridgeConnector.Instance;
-            _registerUsernameCommand = new DelegateCommand(SendRequestUsername);
+            RegisterUsernameCommand = new DelegateCommand(SendRequestUsername);            
         }
         
         private async void SendRequestUsername()
@@ -51,7 +47,7 @@ namespace HueLampApp.ViewModel
 
                 }
             }            
-        }
+        }        
 
         private string GetUsernameOutOfJson(string jsonString)
         {
