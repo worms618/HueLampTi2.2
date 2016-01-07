@@ -80,7 +80,7 @@ namespace HueLampApp.ViewModel
         {
             foreach(HueLamp h in HueLampen)
             {
-                h.UpdateHueLamp(jobject);
+                HueLampFactory.UpdateHueLamp(h,jobject);
             }
         }
 

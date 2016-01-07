@@ -20,8 +20,7 @@ namespace HueLampApp
         {
             get { return _name; }
             set { _name = value;
-                OnPropertyChanged(nameof(Name));
-                SendAllPropertys();
+                OnPropertyChanged(nameof(Name));                
                 }
         }
 
@@ -31,7 +30,7 @@ namespace HueLampApp
             get { return _on; }
             set { _on = value;
                 OnPropertyChanged(nameof(On));
-                SendAllPropertys();
+                HueLampFactory.SendOnProperty(this);
                 }
         }
 
@@ -42,7 +41,7 @@ namespace HueLampApp
             set { _brightness = SetValue(0,255,value);
                 SetHSV();
                 OnPropertyChanged(nameof(Brightness));
-                SendAllPropertys();
+                HueLampFactory.SendBrightnessProperty(this);
                 }
         }
 
@@ -53,7 +52,7 @@ namespace HueLampApp
             set {_hue = SetValue(0,65535,value);
                 SetHSV();
                 OnPropertyChanged(nameof(Hue));
-                SendAllPropertys();
+                HueLampFactory.SendHueProperty(this);
                 }
         }
 
@@ -64,7 +63,7 @@ namespace HueLampApp
             set { _sat = SetValue(0,255,value);
                 SetHSV();
                 OnPropertyChanged(nameof(Sat));
-                SendAllPropertys();
+                HueLampFactory.SendSatProperty(this);
                 }
         }
 
@@ -106,6 +105,7 @@ namespace HueLampApp
             return value;
         }
 
+
         private HueLamp() { }
 
         public HueLamp(int id)
@@ -120,31 +120,9 @@ namespace HueLampApp
         public HueLamp(int id, JObject jsonObject)
         {
             ID = id;
-            UpdateHueLamp(jsonObject);
+            HueLampFactory.UpdateHueLamp(this,jsonObject);
         }        
-
-        public void UpdateHueLamp(JObject jsonObject)
-        {
-            Name = (string)jsonObject   ["" + ID]["name"];
-            On = (bool)jsonObject       ["" + ID]["state"]["on"];
-            Brightness = (int)jsonObject["" + ID]["state"]["bri"];
-            Hue = (long)jsonObject      ["" + ID]["state"]["hue"];
-            Sat = (int)jsonObject       ["" + ID]["state"]["sat"];
-        }
         
-        public void SendAllPropertys()
-        {
-            BridgeConnector bc = BridgeConnector.Instance;
-            HttpStringContent content = new HttpStringContent
-                    (
-                    $"{{\"on\":{On.ToString().ToLower()},\"bri\":{Brightness.ToString().ToLower()},\"hue\":{Hue.ToString().ToLower()},\"sat\":{Sat.ToString().ToLower()}}}",
-                                Windows.Storage.Streams.UnicodeEncoding.Utf8,
-                                "application/json"
-                    );
-            Uri uriLampState = new Uri($"http://{bc.Ip}:{bc.Port}/api/{bc.Username}/light/{ID}/state");
-            bc.PutMessage(content,uriLampState);            
-        }
-
         public override string ToString()
         {
             return $"ID: {ID} - ON: {On} - Brightness: {Brightness} - Hue: {Hue} - Sat: {Sat}";

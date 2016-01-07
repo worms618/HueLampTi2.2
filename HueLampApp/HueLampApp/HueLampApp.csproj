@@ -107,6 +107,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Objects\HueLampFactory.cs" />
     <Compile Include="Objects\PropertyChange.cs" />
     <Compile Include="Objects\Singleton.cs" />
     <Compile Include="Pages\BridgeSettingsPage.xaml.cs">
