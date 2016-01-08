@@ -43,25 +43,25 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             
-            <TextBlock Text="ID:"/>
-            <TextBlock Text="Name:" Grid.Row="1"/>
-            <TextBlock Text="On:" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBlock Text="Hue:" Grid.Row="3"/>
-            <TextBlock Text="Sat:" Grid.Row="4"/>            
-            <TextBlock Text="Brightness:" Grid.Row="5"/>
+            <TextBlock Text="ID:" Margin="25,25,25,0" />
+            <TextBlock Text="Name:" Grid.Row="1" Margin="25,0"/>
+            <TextBlock Text="On:" Grid.Row="2" VerticalAlignment="Center" Margin="25,0"/>
+            <TextBlock Text="Hue:" Grid.Row="3" Margin="25,0"/>
+            <TextBlock Text="Sat:" Grid.Row="4" Margin="25,0"/>
+            <TextBlock Text="Brightness:" Grid.Row="5" Margin="25,0"/>
 
-            <TextBlock Text="{Binding ID, Mode=OneWay}" Grid.Column="1"/>
+            <TextBlock Text="{Binding ID, Mode=OneWay}" Grid.Column="1" Margin="0,25,0,0"/>
             <TextBlock Text="{Binding Name,Mode=OneWay}" Grid.Row="1" Grid.Column="1"/>
-            <TextBlock Text="{Binding On, Mode=OneWay}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+            <!--<TextBlock Text="{Binding On, Mode=OneWay}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>-->
             <TextBlock Text="{Binding Hue, Mode=OneWay}" Grid.Row="3" Grid.Column="1"/>
             <TextBlock Text="{Binding Sat, Mode=OneWay}" Grid.Row="4" Grid.Column="1"/>            
             <TextBlock Text="{Binding Brightness, Mode=OneWay}" Grid.Row="5" Grid.Column="1"/>
             
-            <ToggleSwitch x:Name="OnOffSwitch" IsOn="{Binding On,Mode=TwoWay}" Grid.Row="2" Grid.Column="2"/>
+            <ToggleSwitch x:Name="OnOffSwitch" IsOn="{Binding On,Mode=TwoWay}" Grid.Row="2" Grid.Column="1"/>
         </Grid>
 
         <Rectangle Fill="{Binding HSV,Converter={StaticResource colorOfLamp}, Mode=OneWay}" Grid.Row="1" Width="auto" Height="50" 
-                   Visibility="{x:Bind OnOffSwitch.IsOn,Converter={StaticResource boolToVisibility}, Mode=OneWay}"/>
+                   Visibility="{x:Bind OnOffSwitch.IsOn,Converter={StaticResource boolToVisibility}, Mode=OneWay}" Margin="0,25,0,0"/>
         
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
@@ -70,17 +70,17 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <StackPanel>
-                <TextBlock x:Name="hueBox" Text="Hue:"/>
+            <StackPanel Margin="25,0">
+                <TextBlock x:Name="hueBox" Text="Hue:" Margin="0,25,0,0"/>
                 <Slider x:Name="hueSlider" Minimum="0" Maximum="65535" Value="{Binding Hue,Mode=TwoWay}" IsEnabled="{x:Bind OnOffSwitch.IsOn, Mode=OneWay}"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="1">
+            <StackPanel Grid.Row="1" Margin="25,0">
                 <TextBlock x:Name="satBox" Text="Sat:"/>
                 <Slider x:Name="satSlider" Minimum="0" Maximum="254" Value="{Binding Sat, Mode=TwoWay}" IsEnabled="{x:Bind OnOffSwitch.IsOn, Mode=OneWay}"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="2">
+            <StackPanel Grid.Row="2" Margin="25,0">
                 <TextBlock x:Name="brightnessBox" Text="Brightness:"/>
                 <Slider x:Name="brightSlider" Minimum="0" Maximum="254" Value="{Binding Brightness, Mode=TwoWay}" IsEnabled="{x:Bind OnOffSwitch.IsOn, Mode=OneWay}"/>
             </StackPanel>         
