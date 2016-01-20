@@ -129,6 +129,7 @@ namespace HueLampApp
                 return response;
             }catch(Exception e)
             {
+                Online = false;
                 Debug.WriteLine(e.Message);
                 return null;
             }            
@@ -154,6 +155,7 @@ namespace HueLampApp
             }
             catch (Exception e)
             {
+                Online = false;
                 System.Diagnostics.Debug.WriteLine(e.Message);
                 return null;
             }
@@ -167,11 +169,16 @@ namespace HueLampApp
             try
             {
                 HttpClient client = new HttpClient();
-                await client.PutAsync(uri, content).AsTask(cts.Token);
+                var response = await client.PutAsync(uri, content).AsTask(cts.Token);
+                if (!response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("niet gelukt");
+                }                
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);                
+                Online = false;
+                Debug.WriteLine(e.Message);                
             }
         }
     }

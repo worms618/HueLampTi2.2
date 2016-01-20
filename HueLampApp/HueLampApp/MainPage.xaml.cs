@@ -24,11 +24,13 @@ namespace HueLampApp
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
-    {        
+    {
+        private MainViewModel mvm;
         public MainPage()
         {
             this.InitializeComponent();
-            DataContext = MainViewModel.Instance;            
+            mvm = MainViewModel.Instance;
+            DataContext = mvm;          
             //System.Diagnostics.Debug.WriteLine(MainViewModel.GetInstanceOf().HueLampen.Count);            
         }
         
@@ -44,13 +46,5 @@ namespace HueLampApp
         {
             this.Frame.Navigate(typeof(BridgeSettingsPage));
         }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            //if (!string.IsNullOrEmpty(BridgeConnector.Instance.Username))
-            //{
-            //    MainViewModel.Instance.SendRequestForAllLightsData();
-            //}
-        }        
     }
 }

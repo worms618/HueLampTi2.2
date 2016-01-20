@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,7 +51,7 @@ namespace HueLampApp.ViewModel
         public async void SendRequestForAllLightsData()
         {
             BridgeConnector c = BridgeConnector.Instance;
-            var response = await c.GetMessage(new Uri($"http://{c.Ip}:{c.Port}/api/{c.Username}/lights/"));
+            var response = await c.GetMessage(new Uri($"http://{c.Ip}:{c.Port}/api/{c.Username}/lights/"));           
             if(response != null)
             {
                 var allLightsData = await response.Content.ReadAsStringAsync();
