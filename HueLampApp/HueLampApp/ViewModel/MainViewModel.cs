@@ -54,7 +54,7 @@ namespace HueLampApp.ViewModel
             if(response != null)
             {
                 var allLightsData = await response.Content.ReadAsStringAsync();
-                if (!string.IsNullOrEmpty(allLightsData))
+                if (!string.IsNullOrEmpty(allLightsData) && !allLightsData.Contains("error"))
                 {
                     JObject jobject = JObject.Parse(allLightsData);
                     UpdateList(jobject);
