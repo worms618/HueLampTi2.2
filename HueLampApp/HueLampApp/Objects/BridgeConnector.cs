@@ -123,9 +123,10 @@ namespace HueLampApp
 
                 if (!response.IsSuccessStatusCode)
                 {
+                    Online = false;
                     return null;
                 }
-
+                Online = true;
                 return response;
             }catch(Exception e)
             {
@@ -148,9 +149,10 @@ namespace HueLampApp
 
                 if (!response.IsSuccessStatusCode)
                 {
+                    Online = false;
                     return null;
                 }
-
+                Online = true;
                 return response;
             }
             catch (Exception e)
@@ -172,8 +174,10 @@ namespace HueLampApp
                 var response = await client.PutAsync(uri, content).AsTask(cts.Token);
                 if (!response.IsSuccessStatusCode)
                 {
+                    Online = false;
                     Debug.WriteLine("niet gelukt");
-                }                
+                }
+                Online = true;
             }
             catch (Exception e)
             {
