@@ -58,11 +58,11 @@ namespace HueLampApp
 
         private ApplicationDataContainer _settings;
 
-        private string _username;
+        private string _username = null;
         public string Username
         {
-            get { return _username; }//return _username; }
-            set { _username = value; SaveUsername(); OnPropertyChanged(nameof(Username)); } //_username = value;
+            get { if (_username == null) { GetUsername(); } return _username; }
+            set { _username = value; SaveUsername(); OnPropertyChanged(nameof(Username)); CheckBridge(); }
         }
 
         public BridgeConnector(string ip = "localhost", int port = 80)
@@ -84,8 +84,7 @@ namespace HueLampApp
         private void GetUsername()
         {            
             Debug.WriteLine($"Get, Settings: {_settings}");
-            Username = _settings.Values["username"] as string;
-            //CheckBridge();
+            Username = _settings.Values["username"] as string;            
         }
        
         
@@ -95,16 +94,19 @@ namespace HueLampApp
         }
 
         public async void CheckBridge()
-        {
-            //Debug.WriteLine("making uri");
-            Uri checkUri = new Uri($"http://{Ip}:{Port}/api/{Username}/lights/");
-            //Debug.WriteLine("uri created, making get message");
-            var response = await GetMessage(checkUri);
-            //Debug.WriteLine($"response had come {response}");
-            var content = await response.Content.ReadAsStringAsync();
-            //Debug.WriteLine("content had been read");
-            Online = string.IsNullOrEmpty(content);
-            //Debug.WriteLine($"online property has beed set: {Online}");
+        {            
+            Debug.WriteLine("Sending get message");
+            var response = await GetMessage(new Uri($"http://{Ip}:{Port}/api/{Username}/lights/"));
+
+            Debug.WriteLine($"Response had come {response}");
+            if(response != null)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                Online = !content.Contains("error");
+                Debug.WriteLine($"content had been read: {content}");
+                Debug.WriteLine($"online property has beed set: {Online}");
+            }            
         }
 
         //username
@@ -127,6 +129,7 @@ namespace HueLampApp
                 return response;
             }catch(Exception e)
             {
+                Online = false;
                 Debug.WriteLine(e.Message);
                 return null;
             }            
@@ -152,6 +155,7 @@ namespace HueLampApp
             }
             catch (Exception e)
             {
+                Online = false;
                 System.Diagnostics.Debug.WriteLine(e.Message);
                 return null;
             }
@@ -165,11 +169,16 @@ namespace HueLampApp
             try
             {
                 HttpClient client = new HttpClient();
-                await client.PutAsync(uri, content).AsTask(cts.Token);
+                var response = await client.PutAsync(uri, content).AsTask(cts.Token);
+                if (!response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("niet gelukt");
+                }                
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);                
+                Online = false;
+                Debug.WriteLine(e.Message);                
             }
         }
     }
